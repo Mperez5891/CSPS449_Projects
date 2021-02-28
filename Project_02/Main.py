@@ -3,7 +3,7 @@
 # Divya Barsode
 # Manuel Perez
 #
-# Project: 
+# Project description: 
 #
 # Date: 3/9/2021
 #
