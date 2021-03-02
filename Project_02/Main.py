@@ -8,6 +8,8 @@
 # Date: 3/9/2021
 #
 
+import sqlite3
+conn = sqlite3.connect('main.db')
 # User services:
 # ========================================================
 def createUser(username, email, password):
