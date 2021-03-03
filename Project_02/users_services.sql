@@ -68,24 +68,3 @@ VALUES
 -- test code -------------------------------------------------
 SELECT * FROM users;
 SELECT * FROM following;
-
--- SELECT username, user_followed 
--- FROM users 
--- INNER JOIN following 
--- ON following.user_id = users.user_id;
-
--- SELECT username, user_followed
--- FROM users u
--- INNER JOIN following f
--- ON f.user_id = u.user_id
--- WHERE user_followed = 'arny'AND username = 'dmvphobia';
-
--- how to remove something using a join
--- DELETE FROM following
--- WHERE user_followed IN (
--- 	SELECT user_followed
---	FROM users u
---	INNER JOIN following f
---     	ON f.user_id = u.user_id
---     	WHERE user_followed = 'arny'AND username = 'dmvphobia');
-
