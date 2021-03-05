@@ -44,7 +44,7 @@ Subsequent response definition will only detail the expected value of the 'data 
 
 ### Remove follower
 **Definition**
-'DELETE /users/<username>/<usernameToRemove>'
+'DELETE /users/"username"/"usernameToRemove"'
 
 **Response**
 - '404 Not Found' if username or usernameToRemove does not exist
@@ -59,7 +59,7 @@ Subsequent response definition will only detail the expected value of the 'data 
 # Timeline Services
 ### Get user timeline
 **Definition**
-'GET /users/<username>/posts'
+'GET /users/"username"/posts'
 
 **Response**
 - '404 Not Found' if  user doesn't exist
