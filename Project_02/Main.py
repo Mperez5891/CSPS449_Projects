@@ -88,7 +88,7 @@ def checkPassword():
         connUsers.close()
         return f"Problem while executing query!"
 
-    if user and check_password_hash(user[1], password):
+    if check_login(username, password):
         return f"Login successful!"
     else:
         return f"Unauthorized Login!"
