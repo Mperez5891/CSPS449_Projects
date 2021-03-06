@@ -70,7 +70,7 @@ def create_users():
         'email': email,
         'password': password
     }
-    return json.dumps(userdata)
+    return json.dumps({'userdata':username})
 
 
 @post('/users/login')
@@ -120,7 +120,7 @@ def followers():
         cUsers.close()
         return json.dumps("Problem while executing query!")
 
-    return json.dumps(userdata)
+    return json.dumps({'userdata':username})
 
 # Stop following a user.
 @delete('/users/<username>/<usernameToRemove>')
