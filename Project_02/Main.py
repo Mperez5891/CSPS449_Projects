@@ -8,17 +8,24 @@
 # Date: 3/9/2021
 #
 
-
-from bottle import route, request, get, post, response, static_file, error, delete
+import bottle
+from bottle import route, request, get, post, response, static_file, error, delete, Bottle
 import datetime
 import json
 import sqlite3
 import re
 
+# create apps 1 and 2
+app1 = Bottle()
+app2 = Bottle()
+#app2.mount('/timeline/', app1)
+
+# set up DB connection
 connUsers = sqlite3.connect('Project2-users.db')
 connTimeline = sqlite3.connect('Project2-timeline.db')
 cUsers = connUsers.cursor()
 
+# helper function for Divya
 def dict_factory(cursor, row):
     d = {}
     for idx,col in enumerate(cursor.description):
@@ -31,7 +38,9 @@ cUsers = connUsers.cursor()
 connTimeline.row_factory=dict_factory
 cTimeline = connTimeline.cursor()
 
-@post('/users/')
+# User Service: 
+# ======================================================================================================
+@app1.post('/users/')
 def create_users():
     data = request.json
 
@@ -70,10 +79,10 @@ def create_users():
         'email': email,
         'password': password
     }
-    return json.dumps({'userdata':username})
+    return json.dumps(userdata)
 
 
-@post('/users/login')
+@app1.post('/users/login')
 def checkPassword():
     username = request.json.get('username')
     password = request.json.get('password')
@@ -88,12 +97,12 @@ def checkPassword():
         connUsers.close()
         return f"Problem while executing query!"
 
-    if check_login(username, password):
+    if user and check_password_hash(user[1], password):
         return f"Login successful!"
     else:
         return f"Unauthorized Login!"
 
-@post('/users/addFollower')
+@app1.post('/users/addFollower')
 def followers():
     # extract values from json
     username = request.json.get("username")
@@ -120,10 +129,10 @@ def followers():
         cUsers.close()
         return json.dumps("Problem while executing query!")
 
-    return json.dumps({'userdata':username})
+    return json.dumps(userdata)
 
 # Stop following a user.
-@delete('/users/<username>/<usernameToRemove>')
+@app1.delete('/users/<username>/<usernameToRemove>')
 def removeFollower(username, usernameToRemove):
     # open DB connection
     try:
@@ -134,13 +143,8 @@ def removeFollower(username, usernameToRemove):
     c = conn.cursor()
     
     # check if username exists
-    s = (username,)
-    c.execute(''' SELECT count(username) 
-                    FROM users 
-                    WHERE username = ?''', s)
-
     try:
-        if c.fetchone()[0] != 1: 
+        if (validateUser(username) != True): 
             raise KeyError
     
     except KeyError:
@@ -148,13 +152,8 @@ def removeFollower(username, usernameToRemove):
         return {'removed': False}
 
     # check if username to remove exists
-    s = (usernameToRemove,)
-    c.execute(''' SELECT count(username) 
-                    FROM users 
-                    WHERE username = ?''', s)
-
     try:
-        if c.fetchone()[0] != 1: 
+        if (validateUser(usernameToRemove) != True): 
             raise KeyError
     
     except KeyError:
@@ -175,9 +174,32 @@ def removeFollower(username, usernameToRemove):
     
     return {'removed': True}
 
+# user service helper functions
+def validateUser(username):
+    cUsers.execute(f"select * from users where username='{username}';")
+    user = cUsers.fetchone()
+    if user == None:
+        return False
+    return True
+
+
+def returnFriendsList(username):
+    cUsers.execute(f"select user_followed from following where username='{username}';")
+    followers = cUsers.fetchall()
+    if len(followers) == 0 :
+        return dict({"followers": 0 , "posts": []})
+
+    followersList=[]
+    for follow in followers:
+        followersList.append(follow["user_followed"])
+        
+    return followersList
+
+
+# user service end =====================================================================================
 # Timelines service:
-# ========================================================
-@get('/timeline/<username>')
+# ======================================================================================================
+@app2.get('/timeline/<username>')
 def getUserTimeline(username):
     # open DB connection
     try:
@@ -187,30 +209,14 @@ def getUserTimeline(username):
     
     c = conn.cursor()
     
-    # check if the username exists
-    # open DB connection
+    # check if username to remove exists
     try:
-        temp_conn = sqlite3.connect('Project2-users.db')
-    except sqlite3.OperationalError as e:
-        print(e)
-    
-    temp_c = temp_conn.cursor()
-    
-    # get all posts for a user
-    s = (username,)
-    temp_c.execute(''' SELECT count(username) 
-                    FROM users 
-                    WHERE username = ?''', s)
-
-    try:
-        if temp_c.fetchone()[0] != 1: 
+        if (validateUser(usernameToRemove) != True): 
             raise KeyError
     
     except KeyError:
         response.status = 404
-        return {'removed': False}
-        
-    temp_conn.close()
+        return {'user': 'Does Not exist'}
     
     # get all posts for a user
     s = (username,)
@@ -233,7 +239,7 @@ def getUserTimeline(username):
     return json.dumps({'posts': post_list})
 
 
-@get("/timeline")
+@app2.get("/timeline")
 def getPublicTimeline():
     #Returns recent posts from all users.
     query= "select * from user_posts order by timestamp desc;"
@@ -241,7 +247,7 @@ def getPublicTimeline():
     posts= cTimeline.fetchall()
     return dict(data=posts)
 
-@get("/timeline/<username>/home")
+@app2.get("/timeline/<username>/home")
 def getHomeTimeline(username):
     # Returns recent posts from all users that this user follows.
 
@@ -264,7 +270,7 @@ def getHomeTimeline(username):
     posts = cTimeline.fetchall()
     return dict({"followers": len(followers), "posts": posts})
 
-@post("/timeline/<username>")
+@app2.post("/timeline/<username>")
 def postTweet(username):
     # name=request.forms.get("name")
     data=request.json
@@ -282,7 +288,9 @@ def postTweet(username):
 
     # Post a new tweet.
 
-@post("/doform")
+@app2.post("/doform")
 def doform():
     name=request.forms.get("name")
     return f"saved your name {name}"
+    
+
