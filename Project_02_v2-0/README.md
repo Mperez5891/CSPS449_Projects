@@ -29,6 +29,7 @@ Subsequent response definition will only detail the expected value of the 'data 
 **Response**
 - '201 Created' on success
 - '400 Bad Request' on fail 
+
 '''
 {
 	"username-created": True
@@ -64,6 +65,7 @@ Subsequent response definition will only detail the expected value of the 'data 
 **Response**
 - '200 OK' on success
 - '404 Not Found' if username or user_followed does not exist
+
 '''
 {
 	"user-added": True
@@ -115,6 +117,7 @@ Subsequent response definition will only detail the expected value of the 'data 
 **Response**
 - '200 OK' on success
 - '404 Not Found' if  user doesn't exist
+
 '''
 {
 "data": [{
@@ -157,6 +160,7 @@ Subsequent response definition will only detail the expected value of the 'data 
 **Response**
 - '200 OK' on success
 - '404 Not Found' if user does not exist
+
 '''
 {
 "followers": 3, 
