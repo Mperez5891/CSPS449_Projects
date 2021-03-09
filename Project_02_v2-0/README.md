@@ -190,6 +190,7 @@ Subsequent response definition will only detail the expected value of the 'data 
 **Response**
 - '201 Created' on success
 - '404 Not found' if user does not exist
+
 '''
 {
 	"posted": True
