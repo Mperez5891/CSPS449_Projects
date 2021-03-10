@@ -30,10 +30,6 @@ cUsers = connUsers.cursor()
 
 # User Service: 
 # ======================================================================================================
-
-@userApp.post("/postuser")
-def dummy():
-        return "hello"
         
 @userApp.post('/')
 def create_users():
@@ -105,14 +101,12 @@ def followers(username):
         try:
             with connUsers:
             # Check if user already has this follower
-            cUsers.execute("SELECT * FROM following WHERE username = ? AND user_followed = ?",
-                           (username, user_followed))
-            result = cUsers.fetchall()
+            	cUsers.execute("SELECT * FROM following WHERE username = ? AND user_followed = ?", (username, user_followed))
+            	result = cUsers.fetchall()
             if result:
                 return json.dumps({'userdata': userdata})
             cUsers.execute('PRAGMA foreign_keys = ON')
-            cUsers.execute("INSERT INTO following (username, user_followed) values (?,?)", (username,
-                                                                                            user_followed))
+            cUsers.execute("INSERT INTO following (username, user_followed) values (?,?)", (username, user_followed))
             cUsers.commit()
         except Exception as e:
             cUsers.rollback()
