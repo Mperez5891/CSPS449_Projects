@@ -34,100 +34,95 @@ cUsers = connUsers.cursor()
 @userApp.post("/postuser")
 def dummy():
         return "hello"
-
+        
 @userApp.post('/')
 def create_users():
-    data = request.json
+    userdata = request.json
 
-    username = data["username"]
-    email = data["email"]
-    password = data["password"]
+    username = userdata["username"]
+    email = userdata["email"]
+    password = userdata["password"]
 
     # validate given input
     if username == "":
-        return f"Enter valid Username!"
+        return ({"Incorrect": "Enter valid Username!"})
 
     if password == "" or len(password) < 6:
-        return f"Passowrd is less than 6 characters. Enter a strong password!"
+        return ({"Passowrd is less than 6 characters.": "Enter a strong password!"})
 
     regex = '^[a-z0-9]+[\\._]?[a-z0-9]+[@]\\w+[.]\\w{2,3}$'
     if email == "" or not re.search(regex, email):
-        return f"Enter a email in correct format!"
+        return json.dumps({"Invalid": "Enter a email in correct format!"})
+
     try:
         with connUsers:
-            cUsers.execute("INSERT into user (username, email, password) values (?,?,?)", (username, email, password))
+            cUsers.execute("INSERT into users (username, email, password) values (?,?,?)", (username, email, password))
             connUsers.commit()
-            
+
     except sqlite3.IntegrityError as ie:
-        connUsers.rollback()
         connUsers.close()
-        return f"UserName already exists!"
-    
+        return ({"UserName already exists!": "Enter different username"})
+
     except Exception as e:
-        connUsers.rollback()
         connUsers.close()
-        return f"Problem while connecting to database"
-    
+        return ({"error": "Problem while connecting to database"})
+
     # Create json object that needs to be returned
     userdata = {
         'username': username,
         'email': email,
         'password': password
     }
-    return json.dumps(userdata)
-
+    return json.dumps({'userdata': userdata})
 
 @userApp.post('/login')
 def checkPassword():
     username = request.json.get('username')
     password = request.json.get('password')
     try:
-        with connUsers:
+    	with connUsers:
             # Retrieve user from user table.
-            cUsers.execute("SELECT * FROM user WHERE username = ?", (username,))
+            cUsers.execute("SELECT * FROM users WHERE username = ?", (username,))
             user = cUsers.fetchone()
             connUsers.commit()
     except Exception as e:
-        connUsers.rollback()
         connUsers.close()
-        return f"Problem while executing query!"
-
-    if user and check_password_hash(user[1], password):
-        return f"Login successful!"
+        return ({"error":"Problem while executing query!"})
+    if username in user and password(users.get(username),password):
+        return json.dumps({"authenticate": True})
     else:
-        return f"Unauthorized Login!"
+        return json.dumps({"authenticate": False})
 
 @userApp.post('/<username>/followers')
 def followers(username):
     # extract values from json
-    
-    user_followed = request.json.get("user_followed")
-    userdata = {
-        'username': username,
-        'user_followed': user_followed
-    }
-    # connect to databse
-    try:
-        with connUsers:
+        user_followed = request.json.get("user_followed")
+        userdata = {
+            'username': username,
+            'user_followed': user_followed
+        }
+        # connect to database
+        try:
+            with connUsers:
             # Check if user already has this follower
             cUsers.execute("SELECT * FROM following WHERE username = ? AND user_followed = ?",
                            (username, user_followed))
             result = cUsers.fetchall()
             if result:
-                return json.dumps(userdata)
-            cUsers.execute('pragma foreign_keys = ON')
-            cUsers.execute("INSERT into followers (username, user_followed) values (?,?)", (username,
-                                                                                            usernameToFollow))
+                return json.dumps({'userdata': userdata})
+            cUsers.execute('PRAGMA foreign_keys = ON')
+            cUsers.execute("INSERT INTO following (username, user_followed) values (?,?)", (username,
+                                                                                            user_followed))
             cUsers.commit()
-    except Exception as e:
-        cUsers.rollback()
-        cUsers.close()
-        return json.dumps("Problem while executing query!")
+        except Exception as e:
+            cUsers.rollback()
+            cUsers.close()
+            return ({"error": "Problem while executing query!"})
 
-    return json.dumps(userdata)
+        return json.dumps({'userdata': userdata})
 
 # Stop following a user.
-@userApp.delete('/<username>/followers/<usernameToRemove>')
+@userApp.delete('/<username>/remove/<usernameToRemove>')
 def removeFollower(username, usernameToRemove):
     # open DB connection
     try:
@@ -168,7 +163,7 @@ def removeFollower(username, usernameToRemove):
     conn.close()
     
     return {'removed': True}
-
+    
 # user service helper functions
 @userApp.get("/validate/<username>")
 def validateUser(username):
@@ -194,6 +189,5 @@ def returnFriendsList(username):
         followersList.append(follow["user_followed"])
         
     return dict({"followers": followersList})
-
 
 # user service end =====================================================================================

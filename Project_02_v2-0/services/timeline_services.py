@@ -9,7 +9,6 @@ import services.user_services as userService
 
 
 #  app instance
-
 defaultApp = default_app()
 timelineApp = Bottle()
 
@@ -44,7 +43,7 @@ def getUserTimeline(username):
     
     # check if username to remove exists
     try:
-        if (userService.validateUser(usernameToRemove)["exists"] != True): 
+        if (userService.validateUser(username)["exists"] != True): 
             raise KeyError
     
     except KeyError:
@@ -90,7 +89,7 @@ def getHomeTimeline(username):
         return dict({ "error" : f"Username {username} does not exist"})
     
     followersList1=userService.returnFriendsList(username)["followers"]
-   
+    
     if len(followersList1) == 0 :
         return dict({"follows": 0 , "posts": []})
 

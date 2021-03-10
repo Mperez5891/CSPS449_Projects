@@ -1,8 +1,9 @@
 PRAGMA foreign_keys = ON;
+BEGIN TRANSACTION;
 
 -- drop tables ------------------------------------------------
-DROP TABLE users;
-DROP TABLE following;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS following;
 
 -- create tables ----------------------------------------------
 CREATE TABLE IF NOT EXISTS users(
@@ -65,6 +66,5 @@ VALUES
 ('cryptichatter', 'dmvphobia'),
 ('stealtheddefender', 'fbi_surveillance_team');
 
--- test code -------------------------------------------------
 SELECT * FROM users;
-SELECT * FROM following;
+COMMIT;

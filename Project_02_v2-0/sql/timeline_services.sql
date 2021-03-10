@@ -1,7 +1,8 @@
 PRAGMA foreign_keys = ON;
+BEGIN TRANSACTION;
 
 -- drop tables ------------------------------------------------
-DROP TABLE user_posts;
+DROP TABLE IF EXISTS user_posts;
 
 -- create tables ----------------------------------------------
 CREATE TABLE IF NOT EXISTS user_posts(
@@ -30,8 +31,5 @@ AND THERE MAY BE OTHER SECRET NAMES YOU DO NOT KNOW YET', '2021-1-3 09:11:50'),
 ('need_more_coffee', 'Bring me coffee...', '2021-5-3 09:10:00'),
 ('need_more_coffee', '...pls', '2021-6-3 09:10:00');
 
--- test code -------------------------------------------------
-SELECT * FROM user_posts;
-
-
+COMMIT;
 
