@@ -41,14 +41,17 @@ def create_users():
 
     # validate given input
     if username == "":
-        return ({"Incorrect": "Enter valid Username!"})
+        return ({"success": False, "message": "Enter valid Username!"})
 
     if password == "" or len(password) < 6:
-        return ({"Passowrd is less than 6 characters.": "Enter a strong password!"})
+        # Sooo wrong
+        # return ({"Passowrd is less than 6 characters.": "Enter a strong password!"})
+        return json.dumps({"success": False, "message": "Passoword is less than 6 characters.Enter a strong password!"})
+
 
     regex = '^[a-z0-9]+[\\._]?[a-z0-9]+[@]\\w+[.]\\w{2,3}$'
     if email == "" or not re.search(regex, email):
-        return json.dumps({"Invalid": "Enter a email in correct format!"})
+        return json.dumps({"success": False, "message": "Enter a email in correct format!"})
 
     try:
         with connUsers:
@@ -56,20 +59,22 @@ def create_users():
             connUsers.commit()
 
     except sqlite3.IntegrityError as ie:
-        connUsers.close()
-        return ({"UserName already exists!": "Enter different username"})
+        # connUsers.close()
+        # Sooooo wrong
+        # return ({ "UserName already exists!": "Enter different username"})
+        return json.dumps({ "success": False, "message": "UserName already exists! Enter different username"})
+
 
     except Exception as e:
-        connUsers.close()
-        return ({"error": "Problem while connecting to database"})
+        # connUsers.close()
+        #why no jsondumps?
+        # return ({"success": False, "message": "Problem while connecting to database"})
+        return json.dumps({"success": False, "message": "Problem while connecting to database"})
 
-    # Create json object that needs to be returned
-    userdata = {
-        'username': username,
-        'email': email,
-        'password': password
-    }
-    return json.dumps({'userdata': userdata})
+
+    # Changed this to created:true
+
+    return json.dumps({'success': True})
 
 @userApp.post('/login')
 def checkPassword():
@@ -78,16 +83,25 @@ def checkPassword():
     try:
     	with connUsers:
             # Retrieve user from user table.
+
             cUsers.execute("SELECT * FROM users WHERE username = ?", (username,))
             user = cUsers.fetchone()
-            connUsers.commit()
+            # connUsers.commit()
     except Exception as e:
-        connUsers.close()
-        return ({"error":"Problem while executing query!"})
-    if username in user and password(users.get(username),password):
-        return json.dumps({"authenticate": True})
+        # connUsers.close()
+        return ({"success": False, "message":"Problem while executing query!"})
+
+    # This is wrongggg
+    # if username in user and password(users.get(username),password):
+    #     return json.dumps({"authenticate": True})
+    # else:
+    #     return json.dumps({"authenticate": False})
+
+    # Update by divya
+    if user["password"] == password:
+        return json.dumps({"sucess": True})
     else:
-        return json.dumps({"authenticate": False})
+        return json.dumps({"success": False, "message": "Check your username or password"})
 
 @userApp.post('/<username>/followers')
 def followers(username):
@@ -111,12 +125,14 @@ def followers(username):
         except Exception as e:
             cUsers.rollback()
             cUsers.close()
-            return ({"error": "Problem while executing query!"})
+            return json.dumps({ 'success': False, "message": "Problem while executing query!"})
 
-        return json.dumps({'userdata': userdata})
+        # return json.dumps({'userdata': userdata})
+        return json.dumps({'success': True })
+
 
 # Stop following a user.
-@userApp.delete('/<username>/remove/<usernameToRemove>')
+@userApp.delete('/<username>/followers/<usernameToRemove>')
 def removeFollower(username, usernameToRemove):
     # open DB connection
     try:
@@ -133,7 +149,7 @@ def removeFollower(username, usernameToRemove):
     
     except KeyError:
         response.status = 404
-        return {'removed': False, "message": f"User {usernameToRemove} does not exist"}
+        return json.dumps({'success': False, "message": f"User {usernameToRemove} does not exist"})
 
     # check if username to remove exists
     try:
@@ -142,7 +158,7 @@ def removeFollower(username, usernameToRemove):
     
     except KeyError:
         response.status = 404
-        return {'removed': False, "message": f"The follower {usernameToRemove} which you want to remove does not exist"}
+        return json.dumps({'success': False, "message": f"The follower {usernameToRemove} which you want to remove does not exist"})
     
     # remove user
     s = (username, usernameToRemove)
@@ -156,7 +172,7 @@ def removeFollower(username, usernameToRemove):
     # close DB connection
     conn.close()
     
-    return {'removed': True}
+    return {'success': True}
     
 # user service helper functions
 @userApp.get("/validate/<username>")

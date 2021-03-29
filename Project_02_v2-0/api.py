@@ -1,2 +1,2 @@
-import services.timeline_services
-import services.user_services
+import timeline_services
+import user_services

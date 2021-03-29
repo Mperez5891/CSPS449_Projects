@@ -31,9 +31,9 @@ VALUES
 ('turboslayer', 'tulayer@csu.fullerton.edu', 'Password102'),
 ('cryptichatter', 'cratter@csu.fullerton.edu', 'Password103'),
 ('stealtheddefender', 'stender@csu.fullerton.edu', 'Password104'),
-('blaze assault', 'blsault@csu.fullerton.edu', 'Password105'),
+('blaze_assault', 'blsault@csu.fullerton.edu', 'Password105'),
 ('darkcarnage', 'darnage@csu.fullerton.edu', 'Password106'),
-('frozen gunner', 'frunner@csu.fullerton.edu', 'Password107'),
+('frozen_gunner', 'frunner@csu.fullerton.edu', 'Password107'),
 ('b.with.photos', 'b.hotos@csu.fullerton.edu', 'Password108'),
 ('music_viking', 'muiking@csu.fullerton.edu', 'Password109'),
 ('readingpro', 'rengpro@csu.fullerton.edu', 'Password110'),
@@ -48,8 +48,8 @@ VALUES
 INSERT INTO following(username, user_followed)
 VALUES
 ('bubbly_snowflake', 'dmvphobia'),
-('bubbly_snowflake', 'blaze assault'),
-('bubbly_snowflake', 'frozen gunner'),
+('bubbly_snowflake', 'blaze_assault'),
+('bubbly_snowflake', 'frozen_gunner'),
 ('bubbly_snowflake', 'need_more_coffee'),
 ('dmvphobia', 'rage_quitter1'),
 ('dmvphobia', 'usidor_the_blue'),
