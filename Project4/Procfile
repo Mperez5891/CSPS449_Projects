@@ -1,4 +1,4 @@
-gatewayApi: python3 -m bottle gateway --bind=localhost:8000 --reload --debug
+gatewayApi: python3 -m bottle gateway --bind=localhost:8000 --reload --gatewayApi
 userApi: python3 -m bottle user_services --bind=localhost:5000 --reload --debug
-timelineApi: python3 -m bottle timeline_services --bind=localhost:6000 --reload --debug -h
+timelineApi: python3 -m bottle timeline_services --bind=localhost:6000 --reload --debug 
 
