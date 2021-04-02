@@ -87,6 +87,7 @@ def getPublicTimeline():
 
 @timelineApp.get("/<username>/home")
 def getHomeTimeline(username):
+    
     # follow=request.query_string
     foll=request.GET.get('followers', '').strip()
     if len(foll)==0:

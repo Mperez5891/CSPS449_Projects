@@ -10,8 +10,7 @@ import http.client
 import logging.config
 
 import bottle
-from bottle import route, request, response
-
+from bottle import route, request, response, auth_basic
 import requests
 
 
@@ -29,7 +28,7 @@ app.config.load_config('./etc/gateway.ini')
 
 logging.config.fileConfig(app.config['logging.config'])
 
-
+logging.info("================hi===========")
 # If you want to see traffic being sent from and received by calls to
 # the Requests library, add the following to etc/gateway.ini:
 #
@@ -73,16 +72,39 @@ if not sys.warnoptions:
     import warnings
     warnings.simplefilter('ignore', ResourceWarning)
 
+timelineIndex = 0
+upstream_servers = json_config('proxy.upstreams')
 
+def is_authenticated_user(user, password):
+    logging.info(f"user={user}, pass={password}")
+    resp = requests.post("http://localhost:5100/users/login", data = {'username':user, 'password': password},header={'Content-Type': 'application/json'})
+    # upstream_response = requests.request(
+    #         "POST",
+    #         upstream_servers["users"][0]+"/users/login",
+    #         data={ "username": user, "password": password}
+            
+    #     )
+    logging.info(f"Response1===== {resp}")
+    return True
 
 @route('<url:re:.*>', method='ANY')
+# @auth_basic(is_authenticated_user)
 def gateway(url):
-    print("helllloooo----")
+    authHead=dict(request.headers.items())
+    userPass=(authHead["Authorization"].split(" "))[1]
+    userPassL=userPass.split(":")
 
+    auth= is_authenticated_user(userPassL[0], userPassL[1])
+    logging.info(f"Auth == {auth}")
+    global timelineIndex, upstream_servers
     path = request.urlparts._replace(scheme='', netloc='').geturl()
     collection=path.split("/")[1]
-    upstream_servers = json_config('proxy.upstreams')
-    upstream_server = upstream_servers[collection]
+    if collection=="users":
+        upstream_server = upstream_servers[collection][0]
+    else:
+        upstream_server = upstream_servers[collection][timelineIndex]
+        lenS=len(upstream_servers[collection])
+        timelineIndex = 0 if timelineIndex==lenS-1 else timelineIndex+1
 
     upstream_url = upstream_server + path
     logging.debug('Upstream URL: %s', upstream_url)
@@ -93,6 +115,8 @@ def gateway(url):
             headers['Content-Length'] = '0'
         else:
             headers[name] = value
+
+    logging.debug(headers)
 
     try:
         upstream_response = requests.request(
@@ -111,6 +135,12 @@ def gateway(url):
             'url': e.request.url,
             'exception': type(e).__name__,
         }
+
+    if upstream_response.status_code>=500 and collection == "timeline":
+        upstream_servers["timeline"].remove(upstream_server)
+        timelineIndex = 0
+
+
 
     response.status = upstream_response.status_code
     for name, value in upstream_response.headers.items():
