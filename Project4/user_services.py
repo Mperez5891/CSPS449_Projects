@@ -5,10 +5,15 @@ import datetime
 import json
 import sqlite3
 import re
+import logging.config
+
 
 # create apps 1 and 2
 defaultApp=default_app()
 userApp = Bottle()
+defaultApp.config.load_config('./etc/gateway.ini')
+logging.config.fileConfig(defaultApp.config['logging.config'])
+
 
 defaultApp.mount("/users", userApp)
 #app2.mount('/timeline/', userApp)
@@ -39,13 +44,10 @@ def create_users():
     email = userdata["email"]
     password = userdata["password"]
 
-    # validate given input
     if username == "":
         return json.dumps({"success": False, "message": "Enter valid Username!"})
 
     if password == "" or len(password) < 6:
-        # Sooo wrong
-        # return ({"Passowrd is less than 6 characters.": "Enter a strong password!"})
         return json.dumps({"success": False, "message": "Passoword is less than 6 characters.Enter a strong password!"})
 
 
@@ -59,27 +61,23 @@ def create_users():
             connUsers.commit()
 
     except sqlite3.IntegrityError as ie:
-        # connUsers.close()
-        # Sooooo wrong
-        # return ({ "UserName already exists!": "Enter different username"})
         return json.dumps({ "success": False, "message": "UserName already exists! Enter different username"})
 
 
     except Exception as e:
-        # connUsers.close()
-        #why no jsondumps?
-        # return ({"success": False, "message": "Problem while connecting to database"})
+
         return json.dumps({"success": False, "message": "Problem while connecting to database"})
 
 
-    # Changed this to created:true
 
     return json.dumps({'success': True})
 
 @userApp.post('/login')
 def checkPassword():
+
     username = request.json.get('username')
     password = request.json.get('password')
+
     try:
     	with connUsers:
             # Retrieve user from user table.
@@ -91,15 +89,8 @@ def checkPassword():
         # connUsers.close()
         return ({"success": False, "message":"Problem while executing query!"})
 
-    # This is wrongggg
-    # if username in user and password(users.get(username),password):
-    #     return json.dumps({"authenticate": True})
-    # else:
-    #     return json.dumps({"authenticate": False})
-
-    # Update by divya
     if user["password"] == password:
-        return json.dumps({"sucess": True})
+        return json.dumps({"success": True})
     else:
         return json.dumps({"success": False, "message": "Check your username or password"})
 

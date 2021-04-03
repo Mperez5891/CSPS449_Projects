@@ -28,7 +28,6 @@ app.config.load_config('./etc/gateway.ini')
 
 logging.config.fileConfig(app.config['logging.config'])
 
-logging.info("================hi===========")
 # If you want to see traffic being sent from and received by calls to
 # the Requests library, add the following to etc/gateway.ini:
 #
@@ -75,29 +74,23 @@ if not sys.warnoptions:
 timelineIndex = 0
 upstream_servers = json_config('proxy.upstreams')
 
-def is_authenticated_user(user, password):
-    logging.info(f"user={user}, pass={password}")
-    resp = requests.post("http://localhost:5100/users/login", data = {'username':user, 'password': password},header={'Content-Type': 'application/json'})
-    # upstream_response = requests.request(
-    #         "POST",
-    #         upstream_servers["users"][0]+"/users/login",
-    #         data={ "username": user, "password": password}
-            
-    #     )
-    logging.info(f"Response1===== {resp}")
-    return True
+
+
+def check(user,password):
+    upstream_response = requests.post(upstream_servers["users"][0]+"/users/login",json = {'username':user, 'password': password})
+    message=json.loads(upstream_response.content.decode("ascii"))
+    return message['success']
 
 @route('<url:re:.*>', method='ANY')
-# @auth_basic(is_authenticated_user)
+@auth_basic(check,realm="private", text="Username or Password are wrong")
 def gateway(url):
-    authHead=dict(request.headers.items())
-    userPass=(authHead["Authorization"].split(" "))[1]
-    userPassL=userPass.split(":")
 
-    auth= is_authenticated_user(userPassL[0], userPassL[1])
-    logging.info(f"Auth == {auth}")
+    logging.info(request.auth)
     global timelineIndex, upstream_servers
     path = request.urlparts._replace(scheme='', netloc='').geturl()
+    if path.split("/")[2]=="login":
+        return json.dumps({"success": True})
+
     collection=path.split("/")[1]
     if collection=="users":
         upstream_server = upstream_servers[collection][0]
@@ -116,7 +109,6 @@ def gateway(url):
         else:
             headers[name] = value
 
-    logging.debug(headers)
 
     try:
         upstream_response = requests.request(
