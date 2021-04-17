@@ -5,7 +5,8 @@ Run this command to create the database:
 
 ## Gateway
 Run this comman to create 3 instances of timlines and 1 of gateway and users
-foreman start -m gatewayApi=1,usersApi=1,timelinesApi=3
+
+foreman start -m gatewayApi=1,userApi=1,timelineApi=3,dmApi=1
 
 ## User Services
 ### Usage
