@@ -8,30 +8,38 @@ dynamodb = boto3.resource(
     aws_secret_access_key='fakeMyKeyId',
     verify=False)
 
+# Manny's way
+#dynamodb = boto3.resource(service_name='dynamodb', endpoint_url='http://localhost:8000')
+
 # get the table and delete
 table = dynamodb.Table('DirectMessages')
 table.delete()
 
 # create the dynamboDB table
-table = dynamodb.create_table(
-    TableName = 'DirectMessages',
-    KeySchema = [
-        {
-            'AttributeName':'dmID',
-            'KeyType':'HASH'
+try:
+    table = client.create_table(
+        TableName = 'DirectMessages',
+        KeySchema = [
+            {
+                'AttributeName':'dmID',
+                'KeyType':'HASH'
+            }
+        ],
+        AttributeDefinitions = [
+            {
+                'AttributeName': 'dmID',
+                'AttributeType': 'S'
+            }
+        ],
+        ProvisionedThroughput = {
+            'ReadCapacityUnits': 20,
+            'WriteCapacityUnits': 20
         }
-    ],
-    AttributeDefinitions = [
-        {
-            'AttributeName': 'dmID',
-            'AttributeType': 'S'
-        }
-    ],
-    ProvisionedThroughput = {
-        'ReadCapacityUnits': 20,
-        'WriteCapacityUnits': 20
-    }
-)
+    )
+
+except Exception as e:
+    print(e)
+    response.status = 500
 
 # wait until the table exists
 table.meta.client.get_waiter('table_exists').wait(TableName='DirectMessages')
@@ -132,6 +140,46 @@ table.put_item(
         'time-stamp': '2021-04-14 15:32:11.309128'
     }
 )
+
+# Create the secondary index
+try:
+    resp = client.update_table(
+        TableName = "DirectMessages",
+
+        AttributeDefinitions = [
+            {
+                "AttributeName": "in-reply-to",
+                "AttributeType": "S"
+            },
+        ],
+        GlobalSecondaryIndexUpdates = [
+            {
+                "Create": {
+                    "IndexName": "DmReplyIndex",
+                    "KeySchema": [
+                    {
+                        "AttributeName": "in-reply-to",
+                        "KeyType": "HASH"
+                    }
+                    ],
+                    "Projection":
+                    {
+                        "ProjectionType": "ALL"
+                    },
+                    "ProvisionedThroughput":
+                    {
+                        "ReadCapacityUnits": 20,
+                        "WriteCapacityUnits": 20,
+                    }
+                }
+            }
+        ],
+    )
+
+except Exception as e:
+    print("Error updating table:")
+    print(e)
+    response.status = 500
 # # example of getting an item
 # response = table.get_item(
 #     Key={
