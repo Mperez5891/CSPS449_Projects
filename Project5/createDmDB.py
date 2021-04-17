@@ -1,7 +1,12 @@
 import boto3
 
 # get the service resource
-dynamodb = boto3.resource('dynamodb')
+dynamodb = boto3.resource(
+    'dynamodb',
+    endpoint_url='http://localhost:8000',   
+    aws_access_key_id='fakeMyKeyId',
+    aws_secret_access_key='fakeMyKeyId',
+    verify=False)
 
 # get the table and delete
 table = dynamodb.Table('DirectMessages')
