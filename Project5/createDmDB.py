@@ -19,19 +19,11 @@ table = dynamodb.create_table(
         {
             'AttributeName':'dmID',
             'KeyType':'HASH'
-        },
-        {
-            'AttributeName':'sendingUsername',
-            'KeyType':'RANGE'
         }
     ],
     AttributeDefinitions = [
         {
             'AttributeName': 'dmID',
-            'AttributeType': 'S'
-        },
-        {
-            'AttributeName': 'sendingUsername',
             'AttributeType': 'S'
         }
     ],
@@ -51,17 +43,15 @@ table.put_item(
         'sendingUsername': 'bubbly_snowflake',
         'receivingUsername': 'music_viking',
         'message': 'Dude, I freaken love your music!',
-        'time-stamp': '2021-01-23T20:18:29Z'
+        'time-stamp': '2021-04-14 15:32:11.309128'
     }
 )
 table.put_item(
    Item = {
-        'dmID': 'dm02',
-        'sendingUsername': 'music_viking',
-        'receivingUsername': 'bubbly_snowflake',
+        'dmID': 'reply02',
         'message': 'Thanks, I appreciate it.',
         'in-reply-to': 'dm01',
-        'time-stamp': '2021-01-23T20:19:00Z'
+        'time-stamp': '2021-04-14 16:32:11.309128'
     }
 )
 table.put_item(
@@ -70,7 +60,7 @@ table.put_item(
         'sendingUsername': 'stealtheddefender',
         'receivingUsername': 'rage_quitter1',
         'message': 'Why did you quit?',
-        'time-stamp': '2021-01-24T20:19:00Z'
+        'time-stamp': '2021-04-14 17:32:11.309128'
     }
 )
 table.put_item(
@@ -79,7 +69,7 @@ table.put_item(
         'sendingUsername': 'blaze assault',
         'receivingUsername': 'readingpro',
         'message': 'Hi',
-        'time-stamp': '2021-02-09T08:18:29Z'
+        'time-stamp': '2021-04-14 18:32:11.309128'
     }
 )
 table.put_item(
@@ -88,7 +78,7 @@ table.put_item(
         'sendingUsername': 'need_more_coffee',
         'receivingUsername': 'dravenfact',
         'message': 'Do you like coffee?',
-        'time-stamp': '2021-02-10T03:18:55Z'
+        'time-stamp': '2021-04-15 15:32:11.309128'
     }
 )
 table.put_item(
@@ -97,37 +87,31 @@ table.put_item(
         'sendingUsername': 'chuntttttt',
         'receivingUsername': 'arny',
         'message': 'Are we doing the podcast tomorrow?',
-        'time-stamp': '2021-04-23T20:18:29Z'
+        'time-stamp': '2021-04-15 15:32:11.309128'
     }
 )
 table.put_item(
    Item = {
-        'dmID': 'dm07',
-        'sendingUsername': 'arny',
-        'receivingUsername': 'chuntttttt',
+        'dmID': 'reply07',
         'message': 'Why wouldnt we?',
         'in-reply-to': 'dm06',
-        'time-stamp': '2021-04-23T20:18:29Z'
+        'time-stamp': '2021-04-14 15:32:11.309128'
     }
 )
 table.put_item(
    Item = {
-        'dmID': 'dm08',
-        'sendingUsername': 'chuntttttt',
-        'receivingUsername': 'arny',
+        'dmID': 'reply08',
         'message': 'Dont sas me bro!',
         'in-reply-to': 'dm07',
-        'time-stamp': '2021-04-23T20:18:29Z'
+        'time-stamp': '2021-04-14 15:32:11.309128'
     }
 )
 table.put_item(
    Item = {
-        'dmID': 'dm09',
-        'sendingUsername': 'arny',
-        'receivingUsername': 'chuntttttt',
+        'dmID': 'reply09',
         'message': 'Lets go bro!',
         'in-reply-to': 'dm08',
-        'time-stamp': '2021-04-23T20:18:29Z'
+        'time-stamp': '2021-04-14 15:32:11.309128'
     }
 )
 table.put_item(
@@ -136,7 +120,7 @@ table.put_item(
         'sendingUsername': 'usidor_the_blue',
         'receivingUsername': 'chuntttttt',
         'message': 'STOP FIGHTING!!!',
-        'time-stamp': '2021-04-23T20:18:29Z'
+        'time-stamp': '2021-04-14 15:32:11.309128'
     }
 )
 table.put_item(
@@ -145,7 +129,7 @@ table.put_item(
         'sendingUsername': 'usidor_the_blue',
         'receivingUsername': 'chuntttttt',
         'message': 'STOP FIGHTING!!!',
-        'time-stamp': '2021-04-23T20:18:29Z'
+        'time-stamp': '2021-04-14 15:32:11.309128'
     }
 )
 # # example of getting an item

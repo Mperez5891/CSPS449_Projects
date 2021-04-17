@@ -2,6 +2,13 @@ import boto3
 from bottle import route, request, get, post, response, static_file, error, delete, Bottle,default_app
 import datetime
 import json
+import logging.config
+import random 
+
+# app.config.load_config('./etc/gateway.ini')
+
+
+
 
 #  app instance
 defaultApp = default_app()
@@ -9,6 +16,12 @@ dmApp = Bottle()
 
 # Mount app 
 defaultApp.mount("/directMessages", dmApp)
+
+# Setting up log
+defaultApp.config.load_config('./etc/gateway.ini')
+logging.config.fileConfig(defaultApp.config['logging.config'])
+logging.debug('DM logging enabled')
+
 
 # get the service resource
 dynamodb = boto3.resource(
@@ -20,17 +33,75 @@ dynamodb = boto3.resource(
 
 
 table = dynamodb.Table('DirectMessages')
-response = table.scan()
-data = response['Items']
 
-while 'LastEvaluatedKey' in response:
-    response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
-    data.extend(response['Items'])
-
-# print(data)
 
 
 @dmApp.post('/')
 def sendDirectMessage():
     data = request.json
-    return json.dumps(data)
+    if not("from" in data) or not("to" in data) or not("message" in data):
+        response.status = 500
+        return json.dumps({"success": False, "error": "to/from/message cannot be empty"})
+
+    item = {
+                'dmID': 'dm'+str(random.randrange(5,1000)),
+                'sendingUsername': data["from"],
+                'receivingUsername': data["to"],
+                'message': data["message"],
+                'time-stamp': str(datetime.datetime.now())
+            }
+    if "quickReplies" in data:
+        item["quickReplies"] = data["quickReplies"].split("|")
+    try:
+
+    
+        table.put_item(
+            Item = item
+        )
+    except Exception as e:
+        response.status = 500
+        logging.error(str(e))
+        return json.dumps({"success": False, "error": "There was some problem in posting the message"})
+
+
+    return json.dumps({"success": True, "message": "DM sent successfully"})
+
+
+@dmApp.post('/<dmId>')
+def sendDirectMessage(dmId):
+    data = request.json
+    if not("message" in data):
+        response.status = 500
+        return json.dumps({"success": False, "error": "Message cannot be empty"})
+
+    item = {
+                'dmID': 'reply'+str(random.randrange(5,1000)),
+                'message': data["message"],
+                "in-reply-to": dmId,
+                'time-stamp': str(datetime.datetime.now())
+            }
+    if "quickReplies" in data:
+        item["quickReplies"] = data["quickReplies"].split("|")
+    logging.debug(f"the message======{data['message']},ID= {item['dmID']}")
+    
+    try:
+
+    
+        table.put_item(
+            Item = item
+        )
+    except Exception as e:
+        response.status = 500
+        logging.error(str(e))
+        return json.dumps({"success": False, "error": "There was some problem in posting the message"})
+
+
+    return json.dumps({"success": True, "message": "Reply posted successfully"})
+
+
+@dmApp.get('/')
+def getAllDirectMessage():
+    response1 = table.scan()
+    data1 = response1['Items']
+    logging.debug(data1)
+    return json.dumps({"data":data1})
