@@ -93,10 +93,17 @@ def sendDirectMessage(dmId):
 
 @dmApp.get('/')
 def getAllDirectMessage():
-    response1 = table.scan()
-    data1 = response1['Items']
-    logging.debug(data1)
-    return json.dumps({"data":data1})
+    #response1 = table.scan()
+    #data1 = response1['Items']
+    #logging.debug(data1)
+    #return json.dumps({"data":data1})
+    response = table.query(
+        IndexName='toIndex',
+        KeyConditionExpression=Key('receivingUsername').eq(dmID)
+    )
+    # create list of messages from response
+    list = [item.get('message') for item in response['Items']]
+    return json.dumps({"response"=list})
      
 @dmApp.get('/<dmID>')
 def getDirectMessageReply(dmID):
