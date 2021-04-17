@@ -20,7 +20,6 @@ defaultApp.config.load_config('./etc/gateway.ini')
 logging.config.fileConfig(defaultApp.config['logging.config'])
 logging.debug('DM logging enabled')
 
-
 # get the service resource
 dynamodb = boto3.resource(
     'dynamodb',
@@ -29,10 +28,7 @@ dynamodb = boto3.resource(
     aws_secret_access_key='fakeMyKeyId',
     verify=False)
 
-
 table = dynamodb.Table('DirectMessages')
-
-
 
 @dmApp.post('/')
 def sendDirectMessage():
@@ -83,8 +79,6 @@ def sendDirectMessage(dmId):
     logging.debug(f"the message======{data['message']},ID= {item['dmID']}")
     
     try:
-
-    
         table.put_item(
             Item = item
         )
