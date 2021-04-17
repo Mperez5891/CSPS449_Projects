@@ -1,4 +1,5 @@
 import boto3
+from boto3.dynamodb.conditions import Key
 from bottle import route, request, get, post, response, static_file, error, delete, Bottle,default_app
 import datetime
 import json
@@ -6,9 +7,6 @@ import logging.config
 import random 
 
 # app.config.load_config('./etc/gateway.ini')
-
-
-
 
 #  app instance
 defaultApp = default_app()
@@ -105,3 +103,14 @@ def getAllDirectMessage():
     data1 = response1['Items']
     logging.debug(data1)
     return json.dumps({"data":data1})
+     
+@dmApp.get('/<dmID>')
+def getDirectMessageReply(dmID):
+    # query using dm reply index
+    resp = table.query(
+        IndexName = "DmReplyIndex",
+        KeyConditionExpression = Key('in-reply-to').eq(dmID)
+    )
+
+    items = resp['Items']
+    return json.dumps(items)
