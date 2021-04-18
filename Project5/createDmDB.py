@@ -110,7 +110,7 @@ table.put_item(
    Item = {
         'dmID': 'reply08',
         'message': 'Dont sas me bro!',
-        'in-reply-to': 'dm07',
+        'in-reply-to': 'dm06',
         'time-stamp': '2021-04-14 15:32:11.309128'
     }
 )
@@ -118,7 +118,7 @@ table.put_item(
    Item = {
         'dmID': 'reply09',
         'message': 'Lets go bro!',
-        'in-reply-to': 'dm08',
+        'in-reply-to': 'dm06',
         'time-stamp': '2021-04-14 15:32:11.309128'
     }
 )
