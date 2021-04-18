@@ -1,15 +1,15 @@
 import boto3
 
 # get the service resource
-dynamodb = boto3.resource(
-    'dynamodb',
-    endpoint_url='http://localhost:8000',   
-    aws_access_key_id='fakeMyKeyId',
-    aws_secret_access_key='fakeMyKeyId',
-    verify=False)
+# dynamodb = boto3.resource(
+#     'dynamodb',
+#     endpoint_url='http://localhost:8000',
+#     aws_access_key_id='fakeMyKeyId',
+#     aws_secret_access_key='fakeMyKeyId',
+#     verify=False)
 
 # Manny's way
-#dynamodb = boto3.resource(service_name='dynamodb', endpoint_url='http://localhost:8000')
+dynamodb = boto3.resource(service_name='dynamodb', endpoint_url='http://localhost:8000')
 
 # get the table and delete
 table = dynamodb.Table('DirectMessages')
@@ -17,7 +17,7 @@ table.delete()
 
 # create the dynamboDB table
 try:
-    table = client.create_table(
+    table = dynamodb.create_table(
         TableName = 'DirectMessages',
         KeySchema = [
             {
@@ -140,6 +140,10 @@ table.put_item(
         'time-stamp': '2021-04-14 15:32:11.309128'
     }
 )
+
+# need dynamo client to update table
+client = boto3.client(service_name='dynamodb', endpoint_url='http://localhost:8000')
+
 
 # Create the secondary index
 try:

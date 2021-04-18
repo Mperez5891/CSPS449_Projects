@@ -4,7 +4,7 @@ from bottle import route, request, get, post, response, static_file, error, dele
 import datetime
 import json
 import logging.config
-import random 
+import random
 
 # app.config.load_config('./etc/gateway.ini')
 
@@ -12,7 +12,7 @@ import random
 defaultApp = default_app()
 dmApp = Bottle()
 
-# Mount app 
+# Mount app
 defaultApp.mount("/directMessages", dmApp)
 
 # Setting up log
@@ -23,7 +23,7 @@ logging.debug('DM logging enabled')
 # get the service resource
 dynamodb = boto3.resource(
     'dynamodb',
-    endpoint_url='http://localhost:8000',   
+    endpoint_url='http://localhost:8000',
     aws_access_key_id='fakeMyKeyId',
     aws_secret_access_key='fakeMyKeyId',
     verify=False)
@@ -48,7 +48,7 @@ def sendDirectMessage():
         item["quickReplies"] = data["quickReplies"].split("|")
     try:
 
-    
+
         table.put_item(
             Item = item
         )
@@ -77,7 +77,7 @@ def sendDirectMessage(dmId):
     if "quickReplies" in data:
         item["quickReplies"] = data["quickReplies"].split("|")
     logging.debug(f"the message======{data['message']},ID= {item['dmID']}")
-    
+
     try:
         table.put_item(
             Item = item
@@ -87,24 +87,23 @@ def sendDirectMessage(dmId):
         logging.error(str(e))
         return json.dumps({"success": False, "error": "There was some problem in posting the message"})
 
-
     return json.dumps({"success": True, "message": "Reply posted successfully"})
 
 
-@dmApp.get('/')
-def getAllDirectMessage():
-    #response1 = table.scan()
-    #data1 = response1['Items']
-    #logging.debug(data1)
-    #return json.dumps({"data":data1})
-    response = table.query(
-        IndexName='toIndex',
-        KeyConditionExpression=Key('receivingUsername').eq(dmID)
-    )
-    # create list of messages from response
-    list = [item.get('message') for item in response['Items']]
-    return json.dumps({"response"=list})
-     
+# @dmApp.get('/')
+# def getAllDirectMessage():
+#     #response1 = table.scan()
+#     #data1 = response1['Items']
+#     #logging.debug(data1)
+#     #return json.dumps({"data":data1})
+#     response = table.query(
+#         IndexName='toIndex',
+#         KeyConditionExpression=Key('receivingUsername').eq(dmID)
+#     )
+#     # create list of messages from response
+#     list = [item.get('message') for item in response['Items']]
+#     return json.dumps({'response'=list})
+
 @dmApp.get('/<dmID>')
 def getDirectMessageReply(dmID):
     # query using dm reply index
