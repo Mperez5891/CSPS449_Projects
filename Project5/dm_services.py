@@ -61,8 +61,8 @@ def sendDirectMessage():
     return json.dumps({"success": True, "message": "DM sent successfully"})
 
 
-@dmApp.post('/<dmId>')
-def sendDirectMessage(dmId):
+@dmApp.post('/<dmId>/reply')
+def replyDirectMessage(dmId):
     data = request.json
     if not("message" in data):
         response.status = 500
@@ -87,34 +87,34 @@ def sendDirectMessage(dmId):
         logging.error(str(e))
         return json.dumps({"success": False, "error": "There was some problem in posting the message"})
 
+
     return json.dumps({"success": True, "message": "Reply posted successfully"})
 
 
-# @dmApp.get('/')
-# def getAllDirectMessage():
-#     #response1 = table.scan()
-#     #data1 = response1['Items']
-#     #logging.debug(data1)
-#     #return json.dumps({"data":data1})
-#     response = table.query(
-#         IndexName='toIndex',
-#         KeyConditionExpression=Key('receivingUsername').eq(dmID)
-#     )
-#     # create list of messages from response
-#     list = [item.get('message') for item in response['Items']]
-#     return json.dumps({'response'=list})
+@dmApp.get('/<username>')
+def getAllDirectMessage(username):
+    resp = table.query(
+         IndexName='DmIndex',
+         KeyConditionExpression=Key('sendingUsername').eq(username)
+     )
+    items = response['Items']
+    return json.dumps(items)
 
-@dmApp.get('/<dmID>')
+@dmApp.get('/<dmID>/reply')
 def getDirectMessageReply(dmID):
-    try:
-        # query using dm reply index
-        resp = table.query(
-            IndexName = "DmReplyIndex",
-            KeyConditionExpression = Key('in-reply-to').eq(dmID)
-        )
+    # query using dm reply index
+    resp = table.query(
+        IndexName = "DmReplyIndex",
+        KeyConditionExpression = Key('in-reply-to').eq(dmID)
+    )
 
-        items = resp['Items']
-        return json.dumps(items)
-    except Exception as e:
-        response.status = 404
-        return json.dump({'success': False, 'error':'Replies were not found'})
+    items = resp['Items']
+    return json.dumps(items)
+
+@dmApp.get('/')
+def getAllDirectMessage():
+    response1 = table.scan()
+    data1 = response1['Items']
+    logging.debug(data1)
+    return json.dumps({"data":data1})
+
