@@ -29,13 +29,59 @@ try:
             {
                 'AttributeName': 'dmID',
                 'AttributeType': 'S'
+            },
+            {
+                "AttributeName": "in-reply-to",
+                "AttributeType": "S"
+            },
+            {
+                "AttributeName": "sendingUsername",
+                "AttributeType": "S"
             }
         ],
         ProvisionedThroughput = {
             'ReadCapacityUnits': 20,
             'WriteCapacityUnits': 20
-        }
-    )
+        },
+        GlobalSecondaryIndexes = [
+            {
+                "IndexName": "DmReplyIndex",
+                "KeySchema": [
+                    {
+                        "AttributeName": "in-reply-to",
+                        "KeyType": "HASH"
+                    }
+                    ],
+                    "Projection":
+                    {
+                        "ProjectionType": "ALL"
+                    },
+                    "ProvisionedThroughput":
+                    {
+                        "ReadCapacityUnits": 20,
+                        "WriteCapacityUnits": 20,
+                    }
+                },
+            {
+                "IndexName": "DmIndex",
+                "KeySchema": [
+                    {
+                        'AttributeName':'sendingUsername',
+                        'KeyType':'HASH'
+                    }
+                    ],
+                    "Projection":
+                    {
+                        "ProjectionType": "ALL"
+                    },
+                    "ProvisionedThroughput":
+                    {
+                        "ReadCapacityUnits": 20,
+                        "WriteCapacityUnits": 20,
+                    }
+                }
+            ]
+        )
 
 except Exception as e:
     print(e)
@@ -145,45 +191,45 @@ table.put_item(
 client = boto3.client(service_name='dynamodb', endpoint_url='http://localhost:8000')
 
 
-# Create the secondary index
-try:
-    resp = client.update_table(
-        TableName = "DirectMessages",
-
-        AttributeDefinitions = [
-            {
-                "AttributeName": "in-reply-to",
-                "AttributeType": "S"
-            },
-        ],
-        GlobalSecondaryIndexUpdates = [
-            {
-                "Create": {
-                    "IndexName": "DmReplyIndex",
-                    "KeySchema": [
-                    {
-                        "AttributeName": "in-reply-to",
-                        "KeyType": "HASH"
-                    }
-                    ],
-                    "Projection":
-                    {
-                        "ProjectionType": "ALL"
-                    },
-                    "ProvisionedThroughput":
-                    {
-                        "ReadCapacityUnits": 20,
-                        "WriteCapacityUnits": 20,
-                    }
-                }
-            }
-        ],
-    )
-
-except Exception as e:
-    print("Error updating table:")
-    print(e)
-    response.status = 500
+# # Create the secondary index
+# try:
+#     resp = client.update_table(
+#         TableName = "DirectMessages",
+#
+#         AttributeDefinitions = [
+#             {
+#                 "AttributeName": "in-reply-to",
+#                 "AttributeType": "S"
+#             },
+#         ],
+#         GlobalSecondaryIndexUpdates = [
+#             {
+#                 "Create": {
+#                     "IndexName": "DmReplyIndex",
+#                     "KeySchema": [
+#                     {
+#                         "AttributeName": "in-reply-to",
+#                         "KeyType": "HASH"
+#                     }
+#                     ],
+#                     "Projection":
+#                     {
+#                         "ProjectionType": "ALL"
+#                     },
+#                     "ProvisionedThroughput":
+#                     {
+#                         "ReadCapacityUnits": 20,
+#                         "WriteCapacityUnits": 20,
+#                     }
+#                 }
+#             }
+#         ],
+#     )
+#
+# except Exception as e:
+#     print("Error updating table:")
+#     print(e)
+#     response.status = 500
 # # example of getting an item
 # response = table.get_item(
 #     Key={

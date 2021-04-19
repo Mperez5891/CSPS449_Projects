@@ -47,8 +47,6 @@ def sendDirectMessage():
     if "quickReplies" in data:
         item["quickReplies"] = data["quickReplies"].split("|")
     try:
-
-
         table.put_item(
             Item = item
         )
@@ -56,7 +54,6 @@ def sendDirectMessage():
         response.status = 500
         logging.error(str(e))
         return json.dumps({"success": False, "error": "There was some problem in posting the message"})
-
 
     return json.dumps({"success": True, "message": "DM sent successfully"})
 
@@ -97,19 +94,23 @@ def getAllDirectMessage(username):
          IndexName='DmIndex',
          KeyConditionExpression=Key('sendingUsername').eq(username)
      )
-    items = response['Items']
+    items = resp['Items']
     return json.dumps(items)
 
 @dmApp.get('/<dmID>/reply')
 def getDirectMessageReply(dmID):
-    # query using dm reply index
-    resp = table.query(
-        IndexName = "DmReplyIndex",
-        KeyConditionExpression = Key('in-reply-to').eq(dmID)
-    )
+    try:
+        # query using dm reply index
+        resp = table.query(
+            IndexName = "DmReplyIndex",
+            KeyConditionExpression = Key('in-reply-to').eq(dmID)
+        )
 
-    items = resp['Items']
-    return json.dumps(items)
+        items = resp['Items']
+        return json.dumps(items)
+    except Exception as e:
+        response.status = 404
+        return json.dump({'success': False, 'error':'Replies were not found'})
 
 @dmApp.get('/')
 def getAllDirectMessage():
@@ -117,4 +118,3 @@ def getAllDirectMessage():
     data1 = response1['Items']
     logging.debug(data1)
     return json.dumps({"data":data1})
-
