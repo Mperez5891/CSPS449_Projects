@@ -111,4 +111,6 @@ Subsequent response definition will only detail the expected value of the 'data 
         'time-stamp': '2021-04-14 15:32:11.309128'
 }
 '''
-Note: Replies are optional, you can reply to a message using yes or no parameter in the auth function, It is separated by the "|" key in the Reply directMessage service. 
+
+
+###Note: Replies are optional, you can reply to a message using yes or no parameter in the auth function, It is separated by the "|" key in the Reply directMessage service. 
