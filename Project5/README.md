@@ -86,13 +86,16 @@ Subsequent response definition will only detail the expected value of the 'data 
 - '404 Not Found' if username or directMessages does not exist
 
 '''
-{
-	'dmID': 'dm01',
-        'sendingUsername': 'bubbly_snowflake',
-        'receivingUsername': 'music_viking',
-        'message': 'Dude, I freaken love your music!',
-        'time-stamp': '2021-04-14 15:32:11.309128'
-}
+[
+    {
+        "dmID": "dm06",
+        "message": "Are we doing the podcast tomorrow?",
+        "receivingUsername": "arny",
+        "sendingUsername": "chuntttttt",
+        "time-stamp": "2021-04-15 15:32:11.309128"
+    }
+]
+
 '''
 
 ### List ALL Direct Message Reply
@@ -104,12 +107,27 @@ Subsequent response definition will only detail the expected value of the 'data 
 - '404 Not Found' if username or replies does not exist
 
 '''
-{	'dmID': 'dm01',
-        'sendingUsername': 'bubbly_snowflake',
-        'receivingUsername': 'music_viking',
-        'message': 'Dude, I freaken love your music!',
-        'time-stamp': '2021-04-14 15:32:11.309128'
-}
+[
+    {
+        "dmID": "reply08",
+        "in-reply-to": "dm06",
+        "message": "Dont sas me bro!",
+        "time-stamp": "2021-04-14 15:32:11.309128"
+    },
+    {
+        "dmID": "reply09",
+        "in-reply-to": "dm06",
+        "message": "Lets go bro!",
+        "time-stamp": "2021-04-14 15:32:11.309128"
+    },
+    {
+        "dmID": "reply07",
+        "in-reply-to": "dm06",
+        "message": "Why wouldnt we?",
+        "time-stamp": "2021-04-14 15:32:11.309128"
+    }
+]
+
 '''
 
 
