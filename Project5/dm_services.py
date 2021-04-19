@@ -90,12 +90,16 @@ def replyDirectMessage(dmId):
 
 @dmApp.get('/<username>')
 def getAllDirectMessage(username):
-    resp = table.query(
-         IndexName='DmIndex',
-         KeyConditionExpression=Key('sendingUsername').eq(username)
-     )
-    items = resp['Items']
-    return json.dumps(items)
+    try:
+        resp = table.query(
+            IndexName='DmIndex',
+            KeyConditionExpression=Key('sendingUsername').eq(username)
+        )
+        items = resp['Items']
+        return json.dumps(items)
+    except Exception as e:
+        response.status = 404
+        return json.dumps({'success':False, 'error':'No messages were found'})
 
 @dmApp.get('/<dmID>/reply')
 def getDirectMessageReply(dmID):
