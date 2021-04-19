@@ -1,14 +1,18 @@
 # Services
 ## Database Creation
-Run this command to create the database:
-./bin/init.sh
+Run this command to create the Dynamo database:
+Python3 createDmDb.py
+
+Use this command to run the DynamoDB in commandline:
+java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
 
 ## Gateway
-Run this comman to create 3 instances of timlines and 1 of gateway and users
+Run this comman to create 3 instances of timlines and 1 of gateway, users and direct messages
 
 foreman start -m gatewayApi=1,userApi=1,timelineApi=3,dmApi=1
 
-## User Services
+
+## Direct Messaging Services
 ### Usage
 
 All responses will have the form
@@ -22,183 +26,89 @@ All responses will have the form
 
 Subsequent response definition will only detail the expected value of the 'data field'
 
-### Create user
+### Send Direct Message service
 **Definition**
-'POST /users'
+'POST /'
 
 **Arguments**
-- '"username":string' a unique name for this account
-- '"email":string' a valid email where we will verify the user
-- '"password":string' a password that follows our requirments; used to login
+- '"dmId": a unique ID for this account
+- '"sendingUsername":string' a valid username to send a Message
+- '"receivingUsername":string'  a valid username to receive a Message
+- '"message":string' a text to send to users
+- '"timestamp":a timestamp to show time and date of messages
 
 **Response**
-- '201 Created' on success
-- '400 Bad Request' on fail 
+- '200 Ok' on success
+- '500 Server error' on fail 
 
 '''
 {
-	"username-created": True
+	'dmID': 'dm01',
+        'sendingUsername': 'bubbly_snowflake',
+        'receivingUsername': 'music_viking',
+        'message': 'Dude, I freaken love your music!',
+        'time-stamp': '2021-04-14 15:32:11.309128'
 }
 '''
 
-### Authenticate User
+### Reply To Direct Messages
 **Definition**
-'POST /users/login'
+'POST /<dmId>/reply'
 
 **Arguments**
-- '"username":string' the unique username for this account
-- '"password":string' matching password for account to gain access
+- '"dmId": a unique ID for this account
+- '"message":string' a text to send to users
+- '"in-reply-to":a reply message to sender's dmId
+- '"timestamp":a timestamp to show time and date of messages
 
 **Response**
-- '200 OK' on success
-- '401 Unauthorized login' failed login
+- '200 Ok' on success
+- '500 Server error' on fail 
 
 '''
 {
-	"authenticated": True
+	'dmID': 'reply02',
+        'message': 'Thanks, I appreciate it.',
+        'in-reply-to': 'dm01',
+        'time-stamp': '2021-04-14 16:32:11.309128'
 }
 '''
 
-### Add follower
+### List All Direct Messages
 **Definition**
-'POST /users/_username_/followers'
+'GET /<username>'
 
 **Arguments**
 - '"username":string' the username of the current user
-- '"user_followed":string' the username of the follower to add
 
 **Response**
 - '200 OK' on success
-- '404 Not Found' if username or user_followed does not exist
+- '404 Not Found' if username or directMessages does not exist
 
 '''
 {
-	"user-added": True
+	'dmID': 'dm01',
+        'sendingUsername': 'bubbly_snowflake',
+        'receivingUsername': 'music_viking',
+        'message': 'Dude, I freaken love your music!',
+        'time-stamp': '2021-04-14 15:32:11.309128'
 }
 '''
 
-### Remove follower
+### List ALL Direct Message Reply
 **Definition**
-'DELETE /users/_username_/remove/_usernameToRemove_'
+'GET /<dmID>/reply'
 
 **Response**
 - '200 No OK' on success
-- '404 Not Found' if username or usernameToRemove does not exist
+- '404 Not Found' if username or replies does not exist
 
 '''
-{
-	"removed":"True"
+{	'dmID': 'dm01',
+        'sendingUsername': 'bubbly_snowflake',
+        'receivingUsername': 'music_viking',
+        'message': 'Dude, I freaken love your music!',
+        'time-stamp': '2021-04-14 15:32:11.309128'
 }
 '''
-
-# Timeline Services
-### Get user timeline
-**Definition**
-'GET /timeline/_username_'
-
-**Response**
-- '200 OK' on success
-- '404 Not Found' if  user doesn't exist
-
-'''
-{
-	"posts": [{
-	"post-id": 1,
-	"post": "Hi",
-	"time": "2021-1-3 09:10:00"
-	},
-	{
-	"post-id": 34,
-	"post": "How did I get here?",
-	"time": "2021-8-5 12:10:00"
-	}]
-}
-'''
-
-### Get public timeline
-**Definition**
-'GET /timeline/'
-
-**Response**
-- '200 OK' on success
-- '404 Not Found' if  user doesn't exist
-
-'''
-{
-"data": [{
-	"post_id": 5, 
-	"username": "b.with.photos", 
-	"post": "Look at this sweet picture", 
-	"timestamp": "2021-1-3 15:10:23"
-	}, 
-	{
-	"post_id": 4, 
-	"username": "arny", 
-	"post": "Hello from the magic tavern!", 
-	"timestamp": "2021-1-3 09:12:54"
-	}, 
-	{
-	"post_id": 3, 
-	"username": "usidor_the_blue", 
-	"post": "WIZARD OF THE 12TH REALM OF EPHYSIYIES \nMASTER OF LIGHT 	  AND SHADOW MANIPULATOR OF MAGICAL DELIGHTS \nDEVOURER OF CHAOS 	 CHAMPION OF THE GREAT HALLS OF TERRAKKAS\nTHE ELVES KNOW ME AS 	FIANG YALOK THE DWARES KNOW ME AS\nZOENEN HOOGSTANDJES I AM KNOWN 	  IN THE NORTHEAST AS GAISMUENAS MEISTAR\nAND THERE MAY BE OTHER 	 SECRET NAMES YOU DO NOT KNOW YET", 
-	"timestamp": "2021-1-3 09:11:50"
-	}, 
-	{
-	"post_id": 2, 
-	"username": "chuntttttt", 
-	"post": "Awh yea baby!", 
-	"timestamp": "2021-1-3 09:10:23"
-	}, 
-	{
-	"post_id": 1, 
-	"username": "bubbly_snowflake", 
-	"post": "Hello. This is my test post.", 
-	"timestamp": "2021-1-3 09:10:00"
-	}]
-}
-'''
-
-### Get home timeline
-**Definition**
-'GET /timeline/_username_/home'
-
-**Response**
-- '200 OK' on success
-- '404 Not Found' if user does not exist
-
-'''
-{
-"followers": 3, 
-"posts":
-	[{
-	"post_id": 10, 
-	"username": "need_more_coffee", 
-	"post": "...pls", 	   
-	"timestamp": "2021-6-3 09:10:00"
-	}, 
-	{
-	"post_id": 9, 
-	"username": "need_more_coffee", 
-	"post": "Bring me coffee...", 
-	"timestamp": "2021-5-3 09:10:00"
-	}]
-}
-'''
-
-### Post tweet
-**Definition**
-'POST /timeline/_username_
-
-**Arguments**
-- '"username":string' the username that is writing the tweet
-
-**Response**
-- '201 Created' on success
-- '404 Not found' if user does not exist
-
-'''
-{
-	"posted": True
-}
-'''
-
+Note: Replies are optional, you can reply to a message using yes or no parameter in the auth function, It is separated by the "|" key in the Reply directMessage service. 
