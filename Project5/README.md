@@ -53,7 +53,7 @@ Subsequent response definition will only detail the expected value of the 'data 
 
 ### Reply To Direct Messages
 **Definition**
-'POST /<dmId>/reply'
+'POST /dmId/reply'
 
 **Arguments**
 - '"dmId": a unique ID for this account
@@ -76,7 +76,7 @@ Subsequent response definition will only detail the expected value of the 'data 
 
 ### List All Direct Messages
 **Definition**
-'GET /<username>'
+'GET /username'
 
 **Arguments**
 - '"username":string' the username of the current user
@@ -100,7 +100,7 @@ Subsequent response definition will only detail the expected value of the 'data 
 
 ### List ALL Direct Message Reply
 **Definition**
-'GET /<dmID>/reply'
+'GET /dmID/reply'
 
 **Response**
 - '200 No OK' on success
