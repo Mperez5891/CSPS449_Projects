@@ -39,7 +39,7 @@ Subsequent response definition will only detail the expected value of the 'data 
 
 **Response**
 - '200 Ok' on success
-- '500 Server error' on fail 
+- '500 Internal Server error' on fail 
 
 '''
 {
@@ -63,7 +63,7 @@ Subsequent response definition will only detail the expected value of the 'data 
 
 **Response**
 - '200 Ok' on success
-- '500 Server error' on fail 
+- '500 Internal Server error' on fail 
 
 '''
 {
@@ -131,4 +131,4 @@ Subsequent response definition will only detail the expected value of the 'data 
 '''
 
 
-###Note: Replies are optional, you can reply to a message using yes or no parameter in the auth function, It is separated by the "|" key in the Reply directMessage service. 
+##Note: Replies are optional, you can reply to a message using yes or no parameter in the auth function, It is separated by the "|" key in the Reply directMessage service. 
