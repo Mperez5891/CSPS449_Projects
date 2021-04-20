@@ -4,3 +4,50 @@
 [2021-04-17 17:05:03,868] DEBUG in root: DM logging enabled
 [2021-04-17 17:05:08,513] DEBUG in root: DM logging enabled
 [2021-04-17 17:05:14,694] DEBUG in root: the message======pagal hai kya,ID= reply746
+[2021-04-19 10:10:09,063] DEBUG in root: Requests logging enabled
+[2021-04-19 10:10:09,357] DEBUG in root: DM logging enabled
+[2021-04-19 10:12:24,176] DEBUG in root: Requests logging enabled
+[2021-04-19 10:12:24,529] DEBUG in root: DM logging enabled
+[2021-04-19 10:14:12,577] INFO in root: ('bubbly_snowflake', 'Password100')
+[2021-04-19 10:15:18,445] DEBUG in root: Requests logging enabled
+[2021-04-19 10:15:21,109] INFO in root: ('bubbly_snowflake', 'Password100')
+[2021-04-19 10:15:28,597] INFO in root: ('bubbly_snowflake', 'Password100')
+[2021-04-19 10:16:04,416] INFO in root: ('bubbly_snowflake', 'Password100')
+[2021-04-19 10:16:04,417] DEBUG in root: Upstream URL: http://localhost:5300/directMessages/dm06/reply
+[2021-04-19 10:16:10,377] INFO in root: ('bubbly_snowflake', 'Password100')
+[2021-04-19 10:16:23,439] INFO in root: ('bubbly_snowflake', 'Password100')
+[2021-04-19 10:16:23,445] DEBUG in root: Upstream URL: http://localhost:5300/directMessages/chuntttttt
+[2021-04-19 10:19:23,877] INFO in root: None
+[2021-04-19 10:20:55,719] DEBUG in root: Requests logging enabled
+[2021-04-19 10:21:51,637] DEBUG in root: Requests logging enabled
+[2021-04-19 10:21:58,119] INFO in root: None
+[2021-04-19 10:23:01,362] DEBUG in root: Requests logging enabled
+[2021-04-19 10:23:01,575] DEBUG in root: DM logging enabled
+[2021-04-19 10:23:14,254] INFO in root: ('bubbly_snowflake', 'Password100')
+[2021-04-19 10:24:16,411] DEBUG in root: Requests logging enabled
+[2021-04-19 10:24:22,674] INFO in root: None
+[2021-04-19 10:24:22,675] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-04-19 10:25:01,752] DEBUG in root: Requests logging enabled
+[2021-04-19 10:25:22,059] INFO in root: ('bubbly_snowflake', 'Password100')
+[2021-04-19 10:28:33,926] INFO in root: ('bubbly_snowflake', 'Password100')
+[2021-04-19 10:32:16,389] DEBUG in root: Requests logging enabled
+[2021-04-19 10:32:28,564] INFO in root: ('bubbly_snowflake', 'Password100')
+[2021-04-19 10:32:28,571] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-04-19 10:33:57,382] INFO in root: ('bubbly_snowflake', 'Password100')
+[2021-04-19 10:33:57,389] DEBUG in root: Upstream URL: http://localhost:5300/directMessages/bubbly_snowflake
+[2021-04-19 10:36:29,910] INFO in root: ('bubbly_snowflake', 'Password100')
+[2021-04-19 10:36:29,910] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-04-20 14:01:37,514] DEBUG in root: Requests logging enabled
+[2021-04-20 14:01:37,907] DEBUG in root: DM logging enabled
+[2021-04-20 14:02:05,852] DEBUG in root: Requests logging enabled
+[2021-04-20 14:02:06,096] DEBUG in root: DM logging enabled
+[2021-04-20 14:03:09,812] INFO in root: ('bubbly_snowflake', 'Password100')
+[2021-04-20 14:03:09,812] DEBUG in root: Upstream URL: http://localhost:5300/directMessages/chuntttttt
+[2021-04-20 14:06:10,617] INFO in root: ('chuntttttt', 'Password115')
+[2021-04-20 14:06:10,618] DEBUG in root: Upstream URL: http://localhost:5300/directMessages/chuntttttt
+[2021-04-20 14:17:58,896] DEBUG in root: Requests logging enabled
+[2021-04-20 14:17:59,173] DEBUG in root: DM logging enabled
+[2021-04-20 14:18:06,310] INFO in root: ('chuntttttt', 'Password115')
+[2021-04-20 14:18:06,315] DEBUG in root: Upstream URL: http://localhost:5300/directMessages/chuntttttt
+[2021-04-20 14:18:33,126] INFO in root: ('chuntttttt', 'Password115')
+[2021-04-20 14:18:33,127] DEBUG in root: Upstream URL: http://localhost:5300/directMessages/dm06/reply

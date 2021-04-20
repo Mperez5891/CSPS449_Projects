@@ -88,11 +88,12 @@ def gateway(url):
     logging.info(request.auth)
     global timelineIndex, upstream_servers
     path = request.urlparts._replace(scheme='', netloc='').geturl()
-    if path.split("/")[2]=="login":
-        return json.dumps({"success": True})
+    if path.split("/")[1]=="users":
+        if path.split("/")[2]=="login":
+            return json.dumps({"success": True})
 
     collection=path.split("/")[1]
-    if collection=="users":
+    if collection!="timelines":
         upstream_server = upstream_servers[collection][0]
     else:
         upstream_server = upstream_servers[collection][timelineIndex]
@@ -108,7 +109,6 @@ def gateway(url):
             headers['Content-Length'] = '0'
         else:
             headers[name] = value
-
 
     try:
         upstream_response = requests.request(

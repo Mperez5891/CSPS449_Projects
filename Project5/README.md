@@ -1,16 +1,20 @@
 # Services
 ## Database Creation
-Run this command to create the Dynamo database:
-Python3 createDmDb.py
-
 Use this command to run the DynamoDB in commandline:
 java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
+
+Run this command to create the Dynamo database:
+Python3 createDmDb.py
 
 ## Gateway
 Run this comman to create 3 instances of timlines and 1 of gateway, users and direct messages
 
 foreman start -m gatewayApi=1,userApi=1,timelineApi=3,dmApi=1
 
+When using httpie to run the gateway at the end of every request add
+--auth  "username:password"
+
+ex: http GET http://localhost:5000/directMessages/chuntttttt --auth "chuntttttt:Password115"
 
 ## Direct Messaging Services
 ### Usage
