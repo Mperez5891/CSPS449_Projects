@@ -1,0 +1,4 @@
+gatewayApi: python3 -m bottle gateway --bind=localhost:$PORT --reload --debug
+userApi: python3 -m bottle user_services --bind=localhost:$PORT --reload --debug
+timelineApi: python3 -m bottle timeline_services --bind=localhost:$PORT --reload --debug
+dmApi: python3 -m bottle dm_services --bind=localhost:$PORT --reload --debug
