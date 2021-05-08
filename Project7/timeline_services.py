@@ -5,6 +5,10 @@ import datetime
 import json
 import sqlite3
 import requests
+from redis import Redis
+from rq import Queue
+import worker_functions
+
 # import services.user_services as userService
 
 
@@ -120,20 +124,40 @@ def getHomeTimeline(username):
 
     return dict({"success": True,"followers": len(followersList1), "posts": posts})
 
+
+postTweetQueue = Queue(connection=Redis())
+
+@timelineApp.post("/test")
+def testQueue():
+    postTweetQueue.enqueue(worker_functions.postTweet,"hiiiiiiiiiiii","byeeeee")
+    response.status = 202
+    return dict({ "success" : True})
+
+
+
+
+
 @timelineApp.post("/<username>")
 def postTweet(username):
     # name=request.forms.get("name")
+    
     data=request.json
     try:
         post= data["text"]
     except:
         response.status = 422
         return dict({ "success" : False, "message" : "No text sent"})
+    
     timestamp = datetime.datetime.now()
-    # userExist= userService.validateUser(username)
-    # if userExist["exists"] == False:
-    #     response.status = 404
-    #     return dict({ "error" : f"Username {username} does not exist"})
+
+    postTweetQueue.enqueue(worker_functions.postTweet,{"username": username, "post": post,"timestamp":timestamp})
+
+    # postTweetQueue.enqueue(worker_functions.postTweet,{"username": username, "post": post,"timestamp":timestamp},cTimeline,connTimeline)
+    response.status = 202
+    return dict({ "message" : "Your post has been queued"})
+
+
+
     try:
         query=f"INSERT INTO user_posts(username, post, timestamp) VALUES ('{username}', '{post}', '{timestamp}');"
         cTimeline.execute(query)
