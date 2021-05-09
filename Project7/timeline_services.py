@@ -8,7 +8,9 @@ import requests
 from redis import Redis
 from rq import Queue
 import worker_functions
+import bottle_redis
 
+# from bottle.ext import redis as redis_plugin
 # import services.user_services as userService
 
 
@@ -16,11 +18,19 @@ import worker_functions
 defaultApp = default_app()
 timelineApp = Bottle()
 
+
+
 # Mount app 
 defaultApp.mount("/timeline", timelineApp)
 
+
+
 # set up DB connection--------------------------------------------
 connTimeline = sqlite3.connect('Project2-timeline.db')
+
+# redis plugin
+redis_plugin = bottle_redis.RedisPlugin()
+timelineApp.install(redis_plugin)
 
 # helper function for Divya
 def dict_factory(cursor, row):
@@ -34,6 +44,8 @@ cTimeline = connTimeline.cursor()
 
 # Timelines service:
 # ======================================================================================================
+
+
 
 @timelineApp.get('/<username>')
 def getUserTimeline(username):
@@ -126,15 +138,7 @@ def getHomeTimeline(username):
 
 
 postTweetQueue = Queue(connection=Redis())
-
-@timelineApp.post("/test")
-def testQueue():
-    postTweetQueue.enqueue(worker_functions.postTweet,"hiiiiiiiiiiii","byeeeee")
-    response.status = 202
-    return dict({ "success" : True})
-
-
-
+hashTagsQueue = Queue(connection=Redis())
 
 
 @timelineApp.post("/<username>")
@@ -151,6 +155,8 @@ def postTweet(username):
     timestamp = datetime.datetime.now()
 
     postTweetQueue.enqueue(worker_functions.postTweet,{"username": username, "post": post,"timestamp":timestamp})
+    hashTagsQueue.enqueue(worker_functions.analyzeHashTags, post)
+
 
     # postTweetQueue.enqueue(worker_functions.postTweet,{"username": username, "post": post,"timestamp":timestamp},cTimeline,connTimeline)
     response.status = 202
@@ -168,6 +174,23 @@ def postTweet(username):
     return dict({ "success" : True})
 
     # Post a new tweet.
+
+
+# Get Trend
+@timelineApp.get("/trending")
+def getTrend(rdb):
+    row = rdb.zrevrange("hashtags", 0, 24, withscores=True)
+    hashtags ={}
+    for item in row:
+        hashtags[item[0].decode('utf-8')]= item[1]
+    print(hashtags)
+    if row:
+        return dict({"success": True, "data":hashtags})
+    else:
+        response.status = 500
+        return dict({"success": False, "message": "Some problem occured while adding in database"})
+
+    # --unsorted in httpie
 
 
 
