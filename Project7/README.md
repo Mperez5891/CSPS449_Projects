@@ -79,7 +79,6 @@ Ex: http GET http://localhost:5000/directMessages/trending/username:"chuntttttt"
 			"#two":1.0,
 			"#three":1.0,
 			"#five":2.0,
-	
 		}
 	]
 ]
