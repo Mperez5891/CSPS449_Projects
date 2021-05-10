@@ -1,13 +1,9 @@
 # Services
-## Gateway
-Run this comman to create 3 instances of timlines and 1 of gateway, users and direct messages
+## How to run
+Run this command to create 3 instances of timlines and 1 of gateway, users and direct messages
 
 foreman start -m gatewayApi=1,userApi=1,timelineApi=3,dmApi=1
 
-When using httpie to run the gateway at the end of every request add
---auth  "username:password"
-
-ex: http GET http://localhost:5000/directMessages/chuntttttt --auth "chuntttttt:Password115"
 
 ## Message Queueing
 For Implementing Message Queueing function, Firstly you need to install an Redis Queue, a message queueing service based on Redis a key-value data store and its libraries.
