@@ -65,7 +65,7 @@ Adding a route Timelines microservice for the URL /trending which gives a range(
 - '500 Internal Server error' on fail 
 
 '''
-###Accessing the timeline function to get the function running 
+### Accessing the timeline function to get the function running 
 Ex: http GET http://localhost:5000/directMessages/trending/username:"chuntttttt"password:Password115" --unsorted
 
 [
