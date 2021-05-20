@@ -10,7 +10,7 @@ import http.client
 import logging.config
 
 import bottle
-from bottle import route, request, response, auth_basic
+from bottle import get,route, request, response, auth_basic
 import requests
 
 
@@ -92,6 +92,10 @@ def gateway(url):
         return json.dumps({"success": True})
 
     collection=path.split("/")[1]
+    if len(upstream_servers[collection])==0:
+        response.status = 503
+        return dict({"success": False})
+
     if collection=="users":
         upstream_server = upstream_servers[collection][0]
     else:
@@ -128,9 +132,10 @@ def gateway(url):
             'exception': type(e).__name__,
         }
 
-    if upstream_response.status_code>=500 and collection == "timeline":
-        upstream_servers["timeline"].remove(upstream_server)
-        timelineIndex = 0
+    if upstream_response.status_code>=500 :
+        upstream_servers[collection].remove(upstream_server)
+        if collection == "timeline":
+            timelineIndex = 0
 
 
 
@@ -140,3 +145,20 @@ def gateway(url):
             continue
         response.set_header(name, value)
     return upstream_response.content
+
+
+@get("/home/<username>")
+@auth_basic(check,realm="private", text="Username or Password are wrong")
+def gethomeTimeline(username):
+    global timelineIndex, upstream_servers
+    follower_response = requests.get(upstream_servers["users"][0]+f"/users/{username}/followers")
+    message=json.loads(follower_response.content.decode("ascii"))
+    
+    
+
+    home_response1 = requests.get(upstream_servers["timeline"][timelineIndex]+f"/timeline/{username}/home?followers={(',').join(message['followers'])}")
+    message1=json.loads(home_response1.content.decode("ascii"))
+    print(message1)
+    return message1
+
+

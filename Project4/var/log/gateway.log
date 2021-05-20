@@ -5,3 +5,45 @@
 [2021-04-17 13:23:04,049] DEBUG in root: Requests logging enabled
 [2021-04-17 13:25:03,521] DEBUG in root: Requests logging enabled
 [2021-04-17 13:25:22,969] DEBUG in root: Requests logging enabled
+[2021-05-20 23:09:56,808] DEBUG in root: Requests logging enabled
+[2021-05-20 23:09:58,260] DEBUG in root: Requests logging enabled
+[2021-05-20 23:10:00,276] DEBUG in root: Requests logging enabled
+[2021-05-20 23:10:02,743] DEBUG in root: Requests logging enabled
+[2021-05-20 23:10:04,476] DEBUG in root: Requests logging enabled
+[2021-05-20 23:10:06,777] DEBUG in root: Requests logging enabled
+[2021-05-20 23:10:08,355] DEBUG in root: Requests logging enabled
+[2021-05-20 23:10:10,330] DEBUG in root: Requests logging enabled
+[2021-05-20 23:10:12,763] DEBUG in root: Requests logging enabled
+[2021-05-20 23:10:14,470] DEBUG in root: Requests logging enabled
+[2021-05-20 23:10:16,398] DEBUG in root: Requests logging enabled
+[2021-05-20 23:10:18,751] DEBUG in root: Requests logging enabled
+[2021-05-20 23:10:20,673] DEBUG in root: Requests logging enabled
+[2021-05-20 23:10:23,052] DEBUG in root: Requests logging enabled
+[2021-05-20 23:11:02,902] DEBUG in root: Requests logging enabled
+[2021-05-20 23:13:03,251] DEBUG in root: Requests logging enabled
+[2021-05-20 23:13:15,543] DEBUG in root: Requests logging enabled
+[2021-05-20 23:14:03,093] DEBUG in root: Requests logging enabled
+[2021-05-20 23:14:11,248] DEBUG in root: Requests logging enabled
+[2021-05-20 23:14:49,679] DEBUG in root: Requests logging enabled
+[2021-05-20 23:15:22,765] DEBUG in root: Requests logging enabled
+[2021-05-20 23:21:42,881] DEBUG in root: Requests logging enabled
+[2021-05-20 23:22:18,453] DEBUG in root: Requests logging enabled
+[2021-05-20 23:23:06,027] DEBUG in root: Requests logging enabled
+[2021-05-20 23:23:43,469] DEBUG in root: Requests logging enabled
+[2021-05-20 23:24:03,820] DEBUG in root: Requests logging enabled
+[2021-05-20 23:25:53,964] DEBUG in root: Requests logging enabled
+[2021-05-20 23:26:01,272] DEBUG in root: Requests logging enabled
+[2021-05-20 23:31:19,528] DEBUG in root: Requests logging enabled
+[2021-05-20 23:32:48,253] DEBUG in root: Requests logging enabled
+[2021-05-20 23:33:16,990] INFO in root: None
+[2021-05-20 23:33:16,990] DEBUG in root: Upstream URL: http://localhost:5100/users/bubbly_snowflake/followers
+[2021-05-20 23:33:22,057] INFO in root: None
+[2021-05-20 23:34:09,032] DEBUG in root: Requests logging enabled
+[2021-05-20 23:34:15,078] INFO in root: None
+[2021-05-20 23:34:15,080] DEBUG in root: Upstream URL: http://localhost:5100/users/bubbly_snowflake/followers
+[2021-05-20 23:34:19,332] INFO in root: None
+[2021-05-20 23:34:34,515] DEBUG in root: Requests logging enabled
+[2021-05-20 23:34:41,383] DEBUG in root: Requests logging enabled
+[2021-05-20 23:35:27,086] DEBUG in root: Requests logging enabled
+[2021-05-20 23:35:33,218] DEBUG in root: Requests logging enabled
+[2021-05-20 23:35:42,663] DEBUG in root: Requests logging enabled

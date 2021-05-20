@@ -15,8 +15,17 @@ timelineApp = Bottle()
 # Mount app 
 defaultApp.mount("/timeline", timelineApp)
 
+timelineApp.config.load_config('./etc/microservice.ini')
+# Allow JSON values to be loaded from app.config[key]
+#
+def json_config(key):
+    value = timelineApp.config[key]
+    return json.loads(value)
+
+dbserver = json_config('dbserver.dblinks')
+
 # set up DB connection--------------------------------------------
-connTimeline = sqlite3.connect('Project2-timeline.db')
+connTimeline = sqlite3.connect(dbserver["timeline"])
 
 # helper function for Divya
 def dict_factory(cursor, row):

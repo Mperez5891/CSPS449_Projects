@@ -188,7 +188,7 @@ def returnFriendsList(username):
     followersList=[]
     for follow in followers:
         followersList.append(follow["user_followed"])
-        
+    response.status = 500
     return dict({"followers": followersList})
 
 # user service end =====================================================================================

@@ -10,11 +10,21 @@ import re
 defaultApp=default_app()
 userApp = Bottle()
 
+
 defaultApp.mount("/users", userApp)
 #app2.mount('/timeline/', userApp)
 
+userApp.config.load_config('./etc/microservice.ini')
+# Allow JSON values to be loaded from app.config[key]
+#
+def json_config(key):
+    value = userApp.config[key]
+    return json.loads(value)
+
+dbserver = json_config('dbserver.dblinks')
+
 # set up DB connection
-connUsers = sqlite3.connect('Project2-users.db')
+connUsers = sqlite3.connect(dbserver['users'])
 
 
 # helper function for Divya
