@@ -82,7 +82,7 @@ def check(user,password):
     return message['success']
 
 @route('<url:re:.*>', method='ANY')
-@auth_basic(check,realm="private", text="Username or Password are wrong")
+# @auth_basic(check,realm="private", text="Username or Password are wrong")
 def gateway(url):
 
     logging.info(request.auth)

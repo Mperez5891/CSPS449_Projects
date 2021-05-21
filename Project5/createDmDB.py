@@ -96,14 +96,14 @@ table.put_item(
         'dmID': 'dm01',
         'sendingUsername': 'bubbly_snowflake',
         'receivingUsername': 'music_viking',
-        'message': 'Dude, I freaken love your music!',
+        'message': { "quickReply": False, "text": 'Dude, I freaken love your music!'},
         'time-stamp': '2021-04-14 15:32:11.309128'
     }
 )
 table.put_item(
    Item = {
         'dmID': 'reply02',
-        'message': 'Thanks, I appreciate it.',
+        'message': { 'quickReply': False, 'text':'Thanks, I appreciate it.'},
         'in-reply-to': 'dm01',
         'time-stamp': '2021-04-14 16:32:11.309128'
     }
@@ -113,7 +113,7 @@ table.put_item(
         'dmID': 'dm03',
         'sendingUsername': 'stealtheddefender',
         'receivingUsername': 'rage_quitter1',
-        'message': 'Why did you quit?',
+        'message': { 'quickReply': False, 'text':'Why did you quit?'},
         'time-stamp': '2021-04-14 17:32:11.309128'
     }
 )
@@ -122,7 +122,7 @@ table.put_item(
         'dmID': 'dm04',
         'sendingUsername': 'blaze assault',
         'receivingUsername': 'readingpro',
-        'message': 'Hi',
+        'message': { 'quickReply': False, 'text':'Hi'},
         'time-stamp': '2021-04-14 18:32:11.309128'
     }
 )
@@ -131,7 +131,7 @@ table.put_item(
         'dmID': 'dm05',
         'sendingUsername': 'need_more_coffee',
         'receivingUsername': 'dravenfact',
-        'message': 'Do you like coffee?',
+        'message': { 'quickReply': False, 'text':'Do you like coffee?'},
         'time-stamp': '2021-04-15 15:32:11.309128'
     }
 )
@@ -140,14 +140,14 @@ table.put_item(
         'dmID': 'dm06',
         'sendingUsername': 'chuntttttt',
         'receivingUsername': 'arny',
-        'message': 'Are we doing the podcast tomorrow?',
+        'message': { 'quickReply': False, 'text':'Are we doing the podcast tomorrow?'},
         'time-stamp': '2021-04-15 15:32:11.309128'
     }
 )
 table.put_item(
    Item = {
         'dmID': 'reply07',
-        'message': 'Why wouldnt we?',
+        'message': { 'quickReply': False, 'text':'Why wouldnt we?'},
         'in-reply-to': 'dm06',
         'time-stamp': '2021-04-14 15:32:11.309128'
     }
@@ -155,7 +155,7 @@ table.put_item(
 table.put_item(
    Item = {
         'dmID': 'reply08',
-        'message': 'Dont sas me bro!',
+        'message': { 'quickReply': False, 'text':'Dont sas me bro!'},
         'in-reply-to': 'dm06',
         'time-stamp': '2021-04-14 15:32:11.309128'
     }
@@ -163,7 +163,7 @@ table.put_item(
 table.put_item(
    Item = {
         'dmID': 'reply09',
-        'message': 'Lets go bro!',
+        'message': { 'quickReply': False, 'text':'Lets go bro!'},
         'in-reply-to': 'dm06',
         'time-stamp': '2021-04-14 15:32:11.309128'
     }
@@ -173,7 +173,7 @@ table.put_item(
         'dmID': 'dm10',
         'sendingUsername': 'usidor_the_blue',
         'receivingUsername': 'chuntttttt',
-        'message': 'STOP FIGHTING!!!',
+        'message': { 'quickReply': False, 'text':'STOP FIGHTING!!!'},
         'time-stamp': '2021-04-14 15:32:11.309128'
     }
 )
@@ -182,7 +182,7 @@ table.put_item(
         'dmID': 'dm11',
         'sendingUsername': 'usidor_the_blue',
         'receivingUsername': 'chuntttttt',
-        'message': 'STOP FIGHTING!!!',
+        'message': { 'quickReply': False, 'text':'STOP FIGHTING!!!'},
         'time-stamp': '2021-04-14 15:32:11.309128'
     }
 )

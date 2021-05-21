@@ -42,7 +42,7 @@ def sendDirectMessage():
                 'dmID': 'dm'+str(random.randrange(5,1000)),
                 'sendingUsername': data["from"],
                 'receivingUsername': data["to"],
-                'message': data["message"],
+                'message': { "quickReply": False, "text": data["message"]},
                 'time-stamp': str(datetime.datetime.now())
             }
     if "quickReplies" in data:
@@ -74,7 +74,7 @@ def replyDirectMessage(dmId):
                 'time-stamp': str(datetime.datetime.now())
             }
     if "quickReplies" in data:
-        item["quickReplies"] = data["quickReplies"].split("|")
+        item["quickReplies"] = data["quickReplies"]
     logging.debug(f"the message======{data['message']},ID= {item['dmID']}")
 
     try:
