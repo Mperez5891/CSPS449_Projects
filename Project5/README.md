@@ -34,12 +34,18 @@ Subsequent response definition will only detail the expected value of the 'data 
 **Definition**
 'POST /'
 
+**Example command**
+http post http://localhost:5000/directMessages to="joey tribiani" from="joey tribiani" message="ddd" quickReplies:='[{"code": "1", "text": "yesss" }]'
+
+Note: code sent should be a string
+
 **Arguments**
 - '"dmId": a unique ID for this account
 - '"sendingUsername":string' a valid username to send a Message
 - '"receivingUsername":string'  a valid username to receive a Message
 - '"message":string' a text to send to users
 - '"timestamp":a timestamp to show time and date of messages
+
 
 **Response**
 - '200 Ok' on success
@@ -51,13 +57,24 @@ Subsequent response definition will only detail the expected value of the 'data 
         'sendingUsername': 'bubbly_snowflake',
         'receivingUsername': 'music_viking',
         'message': 'Dude, I freaken love your music!',
-        'time-stamp': '2021-04-14 15:32:11.309128'
+        'time-stamp': '2021-04-14 15:32:11.309128',
+        'quickReplies' : [
+                {
+                    "code": "1",
+                    "text": "yesss"
+                }
+            ]
 }
 '''
 
 ### Reply To Direct Messages
 **Definition**
 'POST /dmId/reply'
+
+command example: http post http://localhost:5000/directMessages/dm136/reply  message:='{"quickReply": true, "text": "1"}' 
+
+inside quickReply= true if its a quick reply code, false if it is just a text message.
+Code and text message both will be in the field "text"
 
 **Arguments**
 - '"dmId": a unique ID for this account
@@ -72,7 +89,10 @@ Subsequent response definition will only detail the expected value of the 'data 
 '''
 {
 	'dmID': 'reply02',
-        'message': 'Thanks, I appreciate it.',
+        'message': ' {
+                "quickReply": true,
+                "text": "1"
+            },
         'in-reply-to': 'dm01',
         'time-stamp': '2021-04-14 16:32:11.309128'
 }

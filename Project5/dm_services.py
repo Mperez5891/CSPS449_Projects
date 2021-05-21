@@ -33,6 +33,7 @@ table = dynamodb.Table('DirectMessages')
 @dmApp.post('/')
 def sendDirectMessage():
     data = request.json
+
     if not("from" in data) or not("to" in data) or not("message" in data):
         response.status = 500
         return json.dumps({"success": False, "error": "to/from/message cannot be empty"})
@@ -45,7 +46,7 @@ def sendDirectMessage():
                 'time-stamp': str(datetime.datetime.now())
             }
     if "quickReplies" in data:
-        item["quickReplies"] = data["quickReplies"].split("|")
+        item["quickReplies"] = data["quickReplies"]
     try:
         table.put_item(
             Item = item
@@ -61,6 +62,7 @@ def sendDirectMessage():
 @dmApp.post('/<dmId>/reply')
 def replyDirectMessage(dmId):
     data = request.json
+    # return dict({"data": data})
     if not("message" in data):
         response.status = 500
         return json.dumps({"success": False, "error": "Message cannot be empty"})
@@ -117,4 +119,4 @@ def getAllDirectMessage():
     response1 = table.scan()
     data1 = response1['Items']
     logging.debug(data1)
-    return json.dumps({"data":data1})
+    return dict({"data":data1})

@@ -51,3 +51,120 @@
 [2021-04-20 14:18:06,315] DEBUG in root: Upstream URL: http://localhost:5300/directMessages/chuntttttt
 [2021-04-20 14:18:33,126] INFO in root: ('chuntttttt', 'Password115')
 [2021-04-20 14:18:33,127] DEBUG in root: Upstream URL: http://localhost:5300/directMessages/dm06/reply
+[2021-05-21 20:57:53,900] DEBUG in root: Requests logging enabled
+[2021-05-21 20:57:54,279] DEBUG in root: DM logging enabled
+[2021-05-21 21:04:02,106] DEBUG in root: DM logging enabled
+[2021-05-21 21:04:15,171] DEBUG in root: DM logging enabled
+[2021-05-21 21:04:41,356] DEBUG in root: DM logging enabled
+[2021-05-21 21:05:04,898] DEBUG in root: DM logging enabled
+[2021-05-21 21:05:16,042] DEBUG in root: Requests logging enabled
+[2021-05-21 21:08:14,529] INFO in root: None
+[2021-05-21 21:08:14,531] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 21:10:14,615] INFO in root: None
+[2021-05-21 21:10:14,616] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 21:10:37,513] INFO in root: None
+[2021-05-21 21:10:37,513] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 21:13:14,620] DEBUG in root: DM logging enabled
+[2021-05-21 21:14:41,300] DEBUG in root: DM logging enabled
+[2021-05-21 21:15:45,005] DEBUG in root: DM logging enabled
+[2021-05-21 21:18:50,085] INFO in root: None
+[2021-05-21 21:18:50,085] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 21:19:51,254] INFO in root: None
+[2021-05-21 21:19:51,255] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 21:19:51,349] DEBUG in root: [{'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'receivingUsername': 'chuntttttt', 'dmID': 'dm07', 'sendingUsername': 'arny', 'message': 'Why wouldnt we?'}, {'time-stamp': '2021-04-17 17:01:24.912537', 'in-reply-to': 'dm644', 'dmID': 'reply250', 'message': '1'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm07', 'receivingUsername': 'arny', 'dmID': 'dm08', 'sendingUsername': 'chuntttttt', 'message': 'Dont sas me bro!'}, {'time-stamp': '2021-04-17 16:56:15.675656', 'in-reply-to': 'dm644', 'dmID': 'reply505', 'message': 'yo homeboy'}, {'time-stamp': '2021-04-14 16:32:11.309128', 'in-reply-to': 'dm01', 'receivingUsername': 'bubbly_snowflake', 'dmID': 'dm02', 'sendingUsername': 'music_viking', 'message': 'Thanks, I appreciate it.'}, {'time-stamp': '2021-04-14 17:32:11.309128', 'receivingUsername': 'rage_quitter1', 'dmID': 'dm03', 'sendingUsername': 'stealtheddefender', 'message': 'Why did you quit?'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'dravenfact', 'dmID': 'dm05', 'sendingUsername': 'need_more_coffee', 'message': 'Do you like coffee?'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'arny', 'dmID': 'dm06', 'sendingUsername': 'chuntttttt', 'message': 'Are we doing the podcast tomorrow?'}, {'time-stamp': '2021-04-17 16:53:46.393925', 'receivingUsername': 'Abhishek', 'quickReplies': ['Yes', 'No'], 'dmID': 'dm644', 'sendingUsername': 'Manuel', 'message': 'Yo whatsup'}, {'time-stamp': '2021-04-17 16:52:53.442169', 'receivingUsername': 'Mitali', 'dmID': 'dm847', 'sendingUsername': 'Divya', 'message': 'Yo whatsup girl'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm11', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}, {'time-stamp': '2021-04-14 18:32:11.309128', 'receivingUsername': 'readingpro', 'dmID': 'dm04', 'sendingUsername': 'blaze assault', 'message': 'Hi'}, {'time-stamp': '2021-04-17 16:56:08.407011', 'in-reply-to': 'dm644', 'dmID': 'reply294', 'message': '0'}, {'time-stamp': '2021-04-17 17:05:14.694318', 'in-reply-to': 'dm644', 'dmID': 'reply746', 'message': 'pagal hai kya'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'music_viking', 'dmID': 'dm01', 'sendingUsername': 'bubbly_snowflake', 'message': 'Dude, I freaken love your music!'}, {'time-stamp': '2021-04-17 17:03:27.638401', 'in-reply-to': 'dm644', 'dmID': 'reply679', 'message': '0'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm08', 'receivingUsername': 'chuntttttt', 'dmID': 'dm09', 'sendingUsername': 'arny', 'message': 'Lets go bro!'}, {'time-stamp': '2021-04-17 16:55:04.692663', 'in-reply-to': 'dm847', 'dmID': 'reply993', 'message': 'All good man, all good'}, {'time-stamp': '2021-05-21 21:18:50.089331', 'receivingUsername': 'joey tribiani', 'quickReplies': [{'code': Decimal('1'), 'text': 'yesss'}], 'dmID': 'dm136', 'sendingUsername': 'joey tribiani', 'message': 'ddd'}, {'time-stamp': '2021-04-17 16:58:17.931149', 'in-reply-to': 'dm644', 'dmID': 'reply284', 'message': '1'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm10', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}]
+[2021-05-21 21:21:53,600] INFO in root: None
+[2021-05-21 21:21:53,603] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 21:21:53,625] DEBUG in root: [{'time-stamp': '2021-04-14 17:32:11.309128', 'receivingUsername': 'rage_quitter1', 'dmID': 'dm03', 'sendingUsername': 'stealtheddefender', 'message': 'Why did you quit?'}, {'time-stamp': '2021-04-14 16:32:11.309128', 'in-reply-to': 'dm01', 'dmID': 'reply02', 'message': 'Thanks, I appreciate it.'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'dravenfact', 'dmID': 'dm05', 'sendingUsername': 'need_more_coffee', 'message': 'Do you like coffee?'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'arny', 'dmID': 'dm06', 'sendingUsername': 'chuntttttt', 'message': 'Are we doing the podcast tomorrow?'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm11', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}, {'time-stamp': '2021-04-14 18:32:11.309128', 'receivingUsername': 'readingpro', 'dmID': 'dm04', 'sendingUsername': 'blaze assault', 'message': 'Hi'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply08', 'message': 'Dont sas me bro!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'music_viking', 'dmID': 'dm01', 'sendingUsername': 'bubbly_snowflake', 'message': 'Dude, I freaken love your music!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply09', 'message': 'Lets go bro!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply07', 'message': 'Why wouldnt we?'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm10', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}]
+[2021-05-21 21:52:16,699] DEBUG in root: DM logging enabled
+[2021-05-21 21:53:41,766] INFO in root: None
+[2021-05-21 21:53:41,768] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 21:53:41,778] ERROR in root: HTTPConnectionPool(host='localhost', port=5300): Max retries exceeded with url: /directMessages (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1093ced60>: Failed to establish a new connection: [Errno 61] Connection refused'))
+Traceback (most recent call last):
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/urllib3/util/connection.py", line 84, in create_connection
+    raise err
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/urllib3/util/connection.py", line 74, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/urllib3/connectionpool.py", line 670, in urlopen
+    httplib_response = self._make_request(
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/urllib3/connectionpool.py", line 392, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/Users/divya/opt/anaconda3/lib/python3.8/http/client.py", line 1255, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Users/divya/opt/anaconda3/lib/python3.8/http/client.py", line 1301, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Users/divya/opt/anaconda3/lib/python3.8/http/client.py", line 1250, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Users/divya/opt/anaconda3/lib/python3.8/http/client.py", line 1010, in _send_output
+    self.send(msg)
+  File "/Users/divya/opt/anaconda3/lib/python3.8/http/client.py", line 950, in send
+    self.connect()
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/urllib3/connection.py", line 187, in connect
+    conn = self._new_conn()
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x1093ced60>: Failed to establish a new connection: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/urllib3/connectionpool.py", line 726, in urlopen
+    retries = retries.increment(
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/urllib3/util/retry.py", line 446, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=5300): Max retries exceeded with url: /directMessages (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1093ced60>: Failed to establish a new connection: [Errno 61] Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "./gateway.py", line 114, in gateway
+    upstream_response = requests.request(
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/divya/opt/anaconda3/lib/python3.8/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=5300): Max retries exceeded with url: /directMessages (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1093ced60>: Failed to establish a new connection: [Errno 61] Connection refused'))
+[2021-05-21 21:53:41,814] DEBUG in root: DM logging enabled
+[2021-05-21 21:55:46,579] DEBUG in root: Requests logging enabled
+[2021-05-21 21:55:46,887] DEBUG in root: DM logging enabled
+[2021-05-21 21:55:54,319] INFO in root: None
+[2021-05-21 21:55:54,319] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 21:55:54,385] DEBUG in root: [{'time-stamp': '2021-04-14 17:32:11.309128', 'receivingUsername': 'rage_quitter1', 'dmID': 'dm03', 'sendingUsername': 'stealtheddefender', 'message': 'Why did you quit?'}, {'time-stamp': '2021-04-14 16:32:11.309128', 'in-reply-to': 'dm01', 'dmID': 'reply02', 'message': 'Thanks, I appreciate it.'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'dravenfact', 'dmID': 'dm05', 'sendingUsername': 'need_more_coffee', 'message': 'Do you like coffee?'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'arny', 'dmID': 'dm06', 'sendingUsername': 'chuntttttt', 'message': 'Are we doing the podcast tomorrow?'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm11', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}, {'time-stamp': '2021-04-14 18:32:11.309128', 'receivingUsername': 'readingpro', 'dmID': 'dm04', 'sendingUsername': 'blaze assault', 'message': 'Hi'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply08', 'message': 'Dont sas me bro!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'music_viking', 'dmID': 'dm01', 'sendingUsername': 'bubbly_snowflake', 'message': 'Dude, I freaken love your music!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply09', 'message': 'Lets go bro!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply07', 'message': 'Why wouldnt we?'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm10', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}]
+[2021-05-21 22:24:31,970] INFO in root: None
+[2021-05-21 22:24:31,973] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 22:24:39,382] INFO in root: None
+[2021-05-21 22:24:39,383] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 22:24:39,410] DEBUG in root: [{'time-stamp': '2021-04-14 17:32:11.309128', 'receivingUsername': 'rage_quitter1', 'dmID': 'dm03', 'sendingUsername': 'stealtheddefender', 'message': 'Why did you quit?'}, {'time-stamp': '2021-04-14 16:32:11.309128', 'in-reply-to': 'dm01', 'dmID': 'reply02', 'message': 'Thanks, I appreciate it.'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'dravenfact', 'dmID': 'dm05', 'sendingUsername': 'need_more_coffee', 'message': 'Do you like coffee?'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'arny', 'dmID': 'dm06', 'sendingUsername': 'chuntttttt', 'message': 'Are we doing the podcast tomorrow?'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm11', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}, {'time-stamp': '2021-05-21 22:24:31.986180', 'receivingUsername': 'joey tribiani', 'quickReplies': [{'code': Decimal('1'), 'text': 'yesss'}], 'dmID': 'dm968', 'sendingUsername': 'joey tribiani', 'message': 'ddd'}, {'time-stamp': '2021-04-14 18:32:11.309128', 'receivingUsername': 'readingpro', 'dmID': 'dm04', 'sendingUsername': 'blaze assault', 'message': 'Hi'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply08', 'message': 'Dont sas me bro!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'music_viking', 'dmID': 'dm01', 'sendingUsername': 'bubbly_snowflake', 'message': 'Dude, I freaken love your music!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply09', 'message': 'Lets go bro!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply07', 'message': 'Why wouldnt we?'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm10', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}]
+[2021-05-21 22:28:02,883] INFO in root: None
+[2021-05-21 22:28:02,884] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 22:28:02,901] DEBUG in root: [{'time-stamp': '2021-04-14 17:32:11.309128', 'receivingUsername': 'rage_quitter1', 'dmID': 'dm03', 'sendingUsername': 'stealtheddefender', 'message': 'Why did you quit?'}, {'time-stamp': '2021-04-14 16:32:11.309128', 'in-reply-to': 'dm01', 'dmID': 'reply02', 'message': 'Thanks, I appreciate it.'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'dravenfact', 'dmID': 'dm05', 'sendingUsername': 'need_more_coffee', 'message': 'Do you like coffee?'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'arny', 'dmID': 'dm06', 'sendingUsername': 'chuntttttt', 'message': 'Are we doing the podcast tomorrow?'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm11', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}, {'time-stamp': '2021-04-14 18:32:11.309128', 'receivingUsername': 'readingpro', 'dmID': 'dm04', 'sendingUsername': 'blaze assault', 'message': 'Hi'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply08', 'message': 'Dont sas me bro!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'music_viking', 'dmID': 'dm01', 'sendingUsername': 'bubbly_snowflake', 'message': 'Dude, I freaken love your music!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply09', 'message': 'Lets go bro!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply07', 'message': 'Why wouldnt we?'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm10', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}]
+[2021-05-21 22:28:16,186] INFO in root: None
+[2021-05-21 22:28:16,186] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 22:28:21,632] INFO in root: None
+[2021-05-21 22:28:21,632] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 22:28:21,649] DEBUG in root: [{'time-stamp': '2021-04-14 17:32:11.309128', 'receivingUsername': 'rage_quitter1', 'dmID': 'dm03', 'sendingUsername': 'stealtheddefender', 'message': 'Why did you quit?'}, {'time-stamp': '2021-04-14 16:32:11.309128', 'in-reply-to': 'dm01', 'dmID': 'reply02', 'message': 'Thanks, I appreciate it.'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'dravenfact', 'dmID': 'dm05', 'sendingUsername': 'need_more_coffee', 'message': 'Do you like coffee?'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'arny', 'dmID': 'dm06', 'sendingUsername': 'chuntttttt', 'message': 'Are we doing the podcast tomorrow?'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm11', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}, {'time-stamp': '2021-04-14 18:32:11.309128', 'receivingUsername': 'readingpro', 'dmID': 'dm04', 'sendingUsername': 'blaze assault', 'message': 'Hi'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply08', 'message': 'Dont sas me bro!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'music_viking', 'dmID': 'dm01', 'sendingUsername': 'bubbly_snowflake', 'message': 'Dude, I freaken love your music!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply09', 'message': 'Lets go bro!'}, {'time-stamp': '2021-05-21 22:28:16.189853', 'receivingUsername': 'joey tribiani', 'quickReplies': [{'code': '1', 'text': 'yesss'}], 'dmID': 'dm136', 'sendingUsername': 'joey tribiani', 'message': 'ddd'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply07', 'message': 'Why wouldnt we?'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm10', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}]
+[2021-05-21 22:54:11,526] DEBUG in root: DM logging enabled
+[2021-05-21 22:54:27,642] INFO in root: None
+[2021-05-21 22:54:27,643] DEBUG in root: Upstream URL: http://localhost:5300/directMessages/dm136/reply
+[2021-05-21 22:54:41,766] INFO in root: None
+[2021-05-21 22:54:41,766] DEBUG in root: Upstream URL: http://localhost:5300/directMessages/dm136/reply
+[2021-05-21 22:54:53,598] DEBUG in root: DM logging enabled
+[2021-05-21 22:54:55,985] INFO in root: None
+[2021-05-21 22:54:55,985] DEBUG in root: Upstream URL: http://localhost:5300/directMessages/dm136/reply
+[2021-05-21 22:54:55,989] DEBUG in root: the message======{'quickReply': True, 'text': '1'},ID= reply484
+[2021-05-21 22:55:04,247] INFO in root: None
+[2021-05-21 22:55:04,248] DEBUG in root: Upstream URL: http://localhost:5300/directMessages
+[2021-05-21 22:55:04,319] DEBUG in root: [{'time-stamp': '2021-04-14 17:32:11.309128', 'receivingUsername': 'rage_quitter1', 'dmID': 'dm03', 'sendingUsername': 'stealtheddefender', 'message': 'Why did you quit?'}, {'time-stamp': '2021-04-14 16:32:11.309128', 'in-reply-to': 'dm01', 'dmID': 'reply02', 'message': 'Thanks, I appreciate it.'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'dravenfact', 'dmID': 'dm05', 'sendingUsername': 'need_more_coffee', 'message': 'Do you like coffee?'}, {'time-stamp': '2021-04-15 15:32:11.309128', 'receivingUsername': 'arny', 'dmID': 'dm06', 'sendingUsername': 'chuntttttt', 'message': 'Are we doing the podcast tomorrow?'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm11', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}, {'time-stamp': '2021-04-14 18:32:11.309128', 'receivingUsername': 'readingpro', 'dmID': 'dm04', 'sendingUsername': 'blaze assault', 'message': 'Hi'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply08', 'message': 'Dont sas me bro!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'music_viking', 'dmID': 'dm01', 'sendingUsername': 'bubbly_snowflake', 'message': 'Dude, I freaken love your music!'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply09', 'message': 'Lets go bro!'}, {'time-stamp': '2021-05-21 22:28:16.189853', 'receivingUsername': 'joey tribiani', 'quickReplies': [{'code': '1', 'text': 'yesss'}], 'dmID': 'dm136', 'sendingUsername': 'joey tribiani', 'message': 'ddd'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'in-reply-to': 'dm06', 'dmID': 'reply07', 'message': 'Why wouldnt we?'}, {'time-stamp': '2021-04-14 15:32:11.309128', 'receivingUsername': 'chuntttttt', 'dmID': 'dm10', 'sendingUsername': 'usidor_the_blue', 'message': 'STOP FIGHTING!!!'}, {'time-stamp': '2021-05-21 22:54:55.989674', 'in-reply-to': 'dm136', 'dmID': 'reply484', 'message': {'quickReply': True, 'text': '1'}}]
+[2021-05-21 22:58:56,992] DEBUG in root: Requests logging enabled
